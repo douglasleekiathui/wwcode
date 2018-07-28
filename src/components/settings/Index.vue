@@ -22,11 +22,15 @@
           label="E-mail"
           required
         ></v-text-field>
+        <v-text-field
+          v-model="phone"
+          :rules="phoneRules"
+          label="Phone Number"
+          required
+        ></v-text-field>
         <v-checkbox
           v-model="checkbox"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree?"
-          required
+          label="Require Test"
         ></v-checkbox>
 
         <v-btn
@@ -69,10 +73,15 @@ export default {
       v => !!v || 'Description is required',
       v => (v && v.length <= 255) || 'Description must be less than 255 characters'
     ],
-    email: '',
+    email: 'hr@mycompany.com',
     emailRules: [
       v => !!v || 'E-mail is required',
       v => /.+@.+/.test(v) || 'E-mail must be valid'
+    ],
+    phone: '66666666',
+    phoneRules: [
+      v => !!v || 'Phone is required',
+      v => (v && v.length === 8) || 'Phone must be valid'
     ],
     checkbox: false,
     snackbar: false,
@@ -92,7 +101,7 @@ export default {
       }
     },
     clear () {
-      this.$refs.form.reset()
+      this.$router.go(-1)
     }
   }
 }
