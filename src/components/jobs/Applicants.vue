@@ -25,6 +25,8 @@
                 </ul>
             </div>
             <br>
+            <v-divider></v-divider>
+            <br>
             <div><h2>Standardised Tests Taken</h2></div>
             <br>
                 <v-data-table
@@ -39,6 +41,8 @@
                 </template>
               </v-data-table>               
             <br>
+            <br>
+            <v-divider></v-divider>
             <br>
             <div><h2>Applicant Writeup</h2></div>
             <br>
@@ -82,7 +86,7 @@
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
-            <v-menu
+            <!-- <v-menu
         ref="menu"
         :close-on-content-click="false"
         v-model="menu"
@@ -106,7 +110,27 @@
           <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
           <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
         </v-date-picker>
-      </v-menu>
+      </v-menu> -->
+             <v-menu
+          ref="menu"
+          :close-on-content-click="false"
+          v-model="menu"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          offset-y
+          full-width
+          max-width="290px"
+          min-width="290px"
+        >
+          <v-text-field
+            slot="activator"
+            v-model="date"
+            label="Date"
+            prepend-icon="event"
+          ></v-text-field>
+          <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
+        </v-menu>
               <v-flex xs12>
               <v-select
               :items="select"
@@ -127,18 +151,20 @@
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
     <!-- dialog for sending test portion -->
-    <v-dialog v-model="dialog_test" scrollable max-width="300px">
+    <v-dialog v-model="dialog_test" scrollable max-width="500px">
       <v-btn slot="activator" color="green" dark>Send Test(s)</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Select test(s) to send</span>
         </v-card-title>
         <v-divider></v-divider>
+        <v-card-text>
         <v-checkbox-group v-model="hello" column>
             <v-checkbox label="Java Beginner" value="JB1"></v-checkbox>
             <v-checkbox label="Java Advanced" value="JA1"></v-checkbox>
             <v-checkbox label="React Beginner" value="RA1"></v-checkbox>
         </v-checkbox-group>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Close</v-btn>
@@ -171,7 +197,7 @@
       </v-card>
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
-            <v-btn @click="nothing" color="primary">Return to List</v-btn>
+            <v-btn @click="returnApplicationList" color="primary">Return to List</v-btn>
         </v-card-actions>
     </v-card>
     </v-layout>
@@ -189,6 +215,8 @@ export default {
         dialog_test: false,
         dialog_interview: false,
         dialog_message: false,
+        menu: false,
+        dateFormatted: null,
         select: ["08:30", "09:00", "09.30"],
         StandardTestHeaders: [
           {
@@ -223,12 +251,9 @@ export default {
         });
     },
     methods:{
-        submit(){
-            if (this.$refs.form.validate()) {
-                if(this.name===this.password){
+        returnApplicationList(){
                     this.$router.push('/');
-                }
-            }
+            
         }
     }
 }
