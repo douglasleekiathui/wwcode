@@ -2,9 +2,9 @@
   <v-layout row>
 
       <v-card width="800">
-        <v-toolbar color="teal" dark>
+        <v-toolbar color="primary" dark>
 
-          <v-toolbar-title class="text-xs-center">Review on Take Home Assignment</v-toolbar-title>
+          <v-toolbar-title class="text-xs-center">Review on Assessment</v-toolbar-title>
 
           <v-spacer></v-spacer>
 
