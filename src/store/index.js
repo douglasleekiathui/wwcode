@@ -15,5 +15,5 @@ export default new Vuex.Store({
     company
   },
   strict: debug,
-  plugins: null
+  plugins: []
 })
