@@ -44,7 +44,7 @@
             <v-list-tile to="/login">
               <v-list-tile-title>Logout</v-list-tile-title>
             </v-list-tile>
-          </v-list>       
+          </v-list>
         </v-menu>
 
     </v-toolbar>
@@ -66,14 +66,16 @@ export default {
       drawer: true,
       fixed: false,
       items: [
-          {icon: 'settings', title: 'Settings', path: 'settings'}
+          {icon: 'settings', title: 'Settings', path: '/settings'},
+          {icon: 'assignments', title: 'Jobs Posted', path:"/"},
+          {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'}
         ],
       menu:[
           {title:'Jobs Posted',path:'/'},
           {title:'Browse Job Seekers',path:'/seekers'}
       ],
       miniVariant: false,
-      title: 'Techforlios'
+      title: 'TechFolio'
     }
   },
   name: 'App'
