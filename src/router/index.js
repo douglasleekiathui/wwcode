@@ -75,7 +75,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:jobId',
+      path: '/jobs/1',
       name: 'Applications',
       components: {
         default:Applications,
