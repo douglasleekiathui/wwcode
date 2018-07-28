@@ -1,11 +1,12 @@
 <template>
   <v-container>
-    <span class="display-1">Job Posted</span>
+    <div class="display-1">Job Posting</div>
+    <br/>
     <v-layout class="pa-2">
       <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-tooltip slot="activator" top>
           Add New Job Posting
-        <v-btn icon slot="activator"><v-icon>add</v-icon></v-btn>
+        <v-btn slot="activator"><v-icon left>add</v-icon>Add New Job</v-btn>
         </v-tooltip>
         <new-job @showDialog="toggleNewJobDialog"></new-job>
       </v-dialog>
