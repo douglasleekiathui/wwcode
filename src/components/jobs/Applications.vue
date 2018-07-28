@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import applicationsData from './applicationsData'
+  import ApplicationsData from './ApplicationsData.js'
   export default {
     name: 'Applications',
     props: {
@@ -55,7 +55,7 @@
     },
     data: () => {
       return {
-        items: applicationsData.filter((user) => user.id < 42),
+        items: ApplicationsData.filter((user) => user.id < 42),
         fields: [
           {key: 'id'},
           {key: 'name'},
