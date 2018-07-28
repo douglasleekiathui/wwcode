@@ -5,7 +5,7 @@
         <v-card-text>
             <div>Application: {{item.id}}</div>
             <br> 
-            <div><strong>Skill Sets</strong></div>
+            <div><h2>Skill Sets</h2></div>
             <br>
             <div>Technical</div>
             <div>      
@@ -25,7 +25,23 @@
                 </ul>
             </div>
             <br>
-            <div><strong>Applicant Writeup</strong></div>
+            <div><h2>Standardised Tests Taken</h2></div>
+            <br>
+                <v-data-table
+                :headers="StandardTestHeaders"
+                :items="item.StandardTest"
+                hide-actions
+                class="elevation-1"
+              >
+                <template slot="items" slot-scope="props">
+                  <td>{{ props.item.name }}</td>
+                  <td class="text-xs-right">{{ props.item.score }}</td>
+                </template>
+              </v-data-table>               
+            <br>
+            <br>
+            <div><h2>Applicant Writeup</h2></div>
+            <br>
             <div>{{item.WriteUp}}</div>
         </v-card-text>
     
@@ -50,7 +66,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog_message = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog_message = false">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog_message = false">Send</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -126,7 +142,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Send</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -173,7 +189,15 @@ export default {
         dialog_test: false,
         dialog_interview: false,
         dialog_message: false,
-        select: ["08:30", "09:00", "09.30"]
+        select: ["08:30", "09:00", "09.30"],
+        StandardTestHeaders: [
+          {
+            text: 'Name',
+            align: 'left',
+            value: 'name'
+          },
+          { text: 'Score', value: 'score' },
+        ]
     }
     },
     mounted(){
@@ -182,12 +206,14 @@ export default {
             {id:1,
             TechnicalSkills:["C#", "SQL", "MongoDB", "Azure", "Linux", "Jenkins"],
             OtherSkills:["Project Management", "Six Sigma", "Manufacturing Domain"],
-            WriteUp:"Hi, I came across your job posting and find it interesting. I have worked with various projects in the past, feel free to contact me for further discussion of this role."
+            WriteUp:"Hi, I came across your job posting and find it interesting. I have worked with various projects in the past, feel free to contact me for further discussion of this role.",
+            StandardTest:[{name:"Codify C# for professional", score:"30/50"},{name:"Hacker Rank SQL Challenge", score:"95/100"}]
             },
             {id:2,
             TechnicalSkills:["Java", "HTML", "CSS", "React", "Structs", "Fortran"],
             OtherSkills:["Work Health Safety", "Finance & Banking"],
-            WriteUp:"I'm looking for opportunity to work in TechTech Pte Ltd, have experience working with teams of various capability. I have written a few open source technologies that have more than 100 000 users per month. Feel free to contact me for further discussion."
+            WriteUp:"I'm looking for opportunity to work in TechTech Pte Ltd, have experience working with teams of various capability. I have written a few open source technologies that have more than 100 000 users per month. Feel free to contact me for further discussion.",
+            StandardTest:[{name:"Codify Java for professional", score:"42/50"},{name:"Hacker Rank SQL Challenge", score:"85/100"}]
             }
         ];
         items.forEach(data => {
