@@ -1,5 +1,17 @@
 <template>
-  <v-layout row>
+    <v-container>
+
+        <h3 class="headline mb-0"><b>Assignment Completion Status</b></h3>
+        <br>
+        <v-layout wrap>
+            <v-flex xs3>Applicant 201807283561</v-flex xs3>
+            <v-flex xs3><v-progress-linear value="70" height="20" width=""></v-progress-linear></v-flex xs3>
+            <v-flex xs3>3</v-flex xs3>
+            <v-flex xs3>4</v-flex xs3>
+            <v-flex xs3>5</v-flex xs3>
+        </v-layout>
+    </v-container>
+  <!-- <v-layout wrap>
 
       <v-card width="800">
         <v-toolbar color="primary" dark>
@@ -44,7 +56,7 @@
         </v-list>
       </v-card>
     </v-flex>
-  </v-layout>
+  </v-layout> -->
 </template>
 
 <script>
