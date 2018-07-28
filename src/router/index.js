@@ -35,6 +35,7 @@ export default new Router({
       }
     },
     {
+<<<<<<< HEAD
       path: '/jobs/details',
       name: 'JobDetailsPage',
       components: {
@@ -45,6 +46,9 @@ export default new Router({
     {
       path: '/jobs/applicants',
       name: 'Applicants',
+=======
+      path: '/jobs/:id',
+>>>>>>> a5a42fb90aecda764206dd39f4905882f8a9004e
       components: {
         default:Applicants,
         layout:CompanyLayout

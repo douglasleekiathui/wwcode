@@ -1,0 +1,209 @@
+<template>
+<v-container>
+    <v-layout align-center justify-center>
+    <v-card width="">
+        <v-card-text>
+            <div>Application: {{item.id}}</div>
+            <br> 
+            <div><strong>Skill Sets</strong></div>
+            <br>
+            <div>Technical</div>
+            <div>      
+                <ul>
+                    <li v-for="(Skill,i) in item.TechnicalSkills" :key="i">
+                    {{Skill}}
+                 </li>
+                </ul>
+            </div>
+            <br>
+            <div>Non-Technical</div>
+            <div>
+                <ul>
+                    <li v-for="(NSkill,i) in item.OtherSkills" :key="i">
+                        {{NSkill}}
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <div><strong>Applicant Writeup</strong></div>
+            <div>{{item.WriteUp}}</div>
+        </v-card-text>
+    
+        <v-card-actions>
+            <v-spacer/>
+    <!-- dialog for contact user portion -->
+    <v-dialog v-model="dialog_message" persistent max-width="500px">
+      <v-btn slot="activator" color="green" dark>Send Message</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Send Message</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field label="Message" hint="Enter your message, avoid asking for applicants personal details" required></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog_message = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog_message = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- End of dialog for contact applicant -->
+        <!-- dialog for arrange interview portion -->
+    <v-dialog v-model="dialog_interview" persistent max-width="500px">
+      <v-btn slot="activator" color="green" dark>Arrange interview</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Arrange interview</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+            <v-menu
+        ref="menu"
+        :close-on-content-click="false"
+        v-model="menu"
+        :nudge-right="40"
+        :return-value.sync="date"
+        lazy
+        transition="scale-transition"
+        offset-y
+        full-width
+        min-width="290px"
+      >
+        <v-text-field
+          slot="activator"
+          v-model="date"
+          label="Select date"
+          prepend-icon="event"
+          readonly
+        ></v-text-field>
+        <v-date-picker v-model="date" no-title scrollable>
+          <v-spacer></v-spacer>
+          <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+          <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+        </v-date-picker>
+      </v-menu>
+              <v-flex xs12>
+              <v-select
+              :items="select"
+              label="Select time"
+              item-value="text"
+            ></v-select>
+                <v-text-field label="Message (Optional)"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog_interview = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog_interview = false">Send</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- End of dialog for Arrange interview -->
+    <!-- dialog for sending test portion -->
+    <v-dialog v-model="dialog_test" scrollable max-width="300px">
+      <v-btn slot="activator" color="green" dark>Send Test(s)</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Select test(s) to send</span>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-checkbox-group v-model="hello" column>
+            <v-checkbox label="Java Beginner" value="JB1"></v-checkbox>
+            <v-checkbox label="Java Advanced" value="JA1"></v-checkbox>
+            <v-checkbox label="React Beginner" value="RA1"></v-checkbox>
+        </v-checkbox-group>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- End of dialog for sending test interview -->
+            <!-- dialog for arrange interview portion -->
+    <v-dialog v-model="dialog" persistent max-width="500px">
+      <v-btn slot="activator" color="error" dark>Reject Candidate</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Reject Candidate</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12>
+                <v-text-field label="Message" hint="Enter your message, avoid asking for applicants personal details" required></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialog = false">Close</v-btn>
+          <v-btn color="error darken-1" flat @click.native="dialog = false">Reject</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- End of dialog for Arrange interview -->
+            <v-btn @click="nothing" color="primary">Return to List</v-btn>
+        </v-card-actions>
+    </v-card>
+    </v-layout>
+</v-container>
+</template>
+
+<script>
+
+export default {
+    data(){
+        return{
+        valid: false,
+        item: {},
+        dialog: false,
+        dialog_test: false,
+        dialog_interview: false,
+        dialog_message: false,
+        select: ["08:30", "09:00", "09.30"]
+    }
+    },
+    mounted(){
+        console.log(this.$route.params.id);
+        var items =[
+            {id:1,
+            TechnicalSkills:["C#", "SQL", "MongoDB", "Azure", "Linux", "Jenkins"],
+            OtherSkills:["Project Management", "Six Sigma", "Manufacturing Domain"],
+            WriteUp:"Hi, I came across your job posting and find it interesting. I have worked with various projects in the past, feel free to contact me for further discussion of this role."
+            },
+            {id:2,
+            TechnicalSkills:["Java", "HTML", "CSS", "React", "Structs", "Fortran"],
+            OtherSkills:["Work Health Safety", "Finance & Banking"],
+            WriteUp:"I'm looking for opportunity to work in TechTech Pte Ltd, have experience working with teams of various capability. I have written a few open source technologies that have more than 100 000 users per month. Feel free to contact me for further discussion."
+            }
+        ];
+        items.forEach(data => {
+            if(data.id == this.$route.params.id){
+                this.item = data;
+            }           
+        });
+    },
+    methods:{
+        submit(){
+            if (this.$refs.form.validate()) {
+                if(this.name===this.password){
+                    this.$router.push('/');
+                }
+            }
+        }
+    }
+}
+</script>
