@@ -164,7 +164,7 @@ import firebase from 'firebase'
       fetchData() {
         let db = firebase.firestore()
         let jobsRef = db.collection('jobs')
-        jobsRef.orderBy('post_date').get().then(snapshot => {
+        jobsRef.orderBy('post_date', 'desc').get().then(snapshot => {
             snapshot.forEach(doc => {
               this.cardItems.push(doc.data());
           });
