@@ -17,7 +17,7 @@ import SeekerDetails from '@/components/seekers/Details'
 Vue.use(Router)
 
 export default new Router({
-  base:'/wwcode/',
+  base: '/wwcode/',
   mode: 'history',
   routes: [
     {
