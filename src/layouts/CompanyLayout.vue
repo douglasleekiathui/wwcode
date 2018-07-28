@@ -63,7 +63,7 @@ export default {
           {title:'Browse Job Seekers',path:'/seekers'}
       ],
       miniVariant: false,
-      title: 'Vuetify.js'
+      title: 'Techforlios'
     }
   },
   name: 'App'
