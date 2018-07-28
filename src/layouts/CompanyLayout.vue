@@ -3,7 +3,6 @@
     <v-navigation-drawer
       dark
       persistent
-      :mini-variant="miniVariant"
       :clipped="clipped"
       v-model="drawer"
       enable-resize-watcher
@@ -11,19 +10,47 @@
       app
     >
       <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.path"
-        >
+        <span v-for="i in items" :key="i">
+        <v-list-tile   
+        :to="i.path"
+        v-if="!i.children">
           <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
+            <v-icon>{{i.icon}}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title class="navtile" v-text="item.title"></v-list-tile-title>
+            <v-list-tile-title class="navtile" v-text="i.title"></v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+
+        <v-list-group
+        :title="i.title"
+        v-else>
+          <v-list-tile slot="activator">
+            <v-list-tile-action>
+              <v-icon>{{ i.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                {{ i.title }}
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-list-tile
+          class="navtile"
+          v-for="c in i.children"
+          :key="c"
+          :to="c.path">
+          <v-list-tile-content>
+            <v-list-tile-title>
+              {{ c.title }}
+            </v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <icon>{{c.icon}}</icon>
+          </v-list-tile-action>
+          </v-list-tile>
+        </v-list-group>
+        </span>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
@@ -52,7 +79,7 @@
       <slot/>
     </v-content>
 
-    <v-footer :fixed="fixed" app>
+    <v-footer>
       <v-spacer/><span>&copy; 2018</span><v-spacer/>
     </v-footer>
   </v-app>
@@ -66,9 +93,18 @@ export default {
       drawer: true,
       fixed: false,
       items: [
+          {icon: 'assignments', title: 'All Jobs', path:"/"},
+          {icon: 'group', title: 'Applicants', children:[
+            {title:"All Applicants", path: '/applicant'}
+          ]},
+          {icon: 'people_outline', title: 'Talent Pool', children:[
+            {title:"All Talents", path: '/talent'}
+          ]},
+          {icon: 'assessment', title: 'Assessments', children:[
+            {title:"Create Assignment", path:"/assignment/create"},
+            {title:"All Assignment", path:"/assignment"}
+          ]},
           {icon: 'settings', title: 'Settings', path: '/settings'},
-          {icon: 'assignments', title: 'Jobs Posted', path:"/"},
-          {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'}
         ],
       menu:[
           {title:'Jobs Posted',path:'/'},
