@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <div class="display-1">Job Posting</div>
+    <div class="pa-3"><div class="display-1">Job Posting</div></div>
     <br/>
-    <v-layout class="pa-2">
-      <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+    <v-layout>
+      <v-dialog class="pa-2" v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
         <v-tooltip slot="activator" top>
           Add New Job Posting
         <v-btn slot="activator"><v-icon left>add</v-icon>Add New Job</v-btn>
@@ -13,6 +13,7 @@
       <v-spacer/>
       <v-flex xs12 sm6>
         <v-text-field
+        class="pa-3"
         hide-details
         append-icon="search"
         type="text"
