@@ -1,7 +1,14 @@
 <template>
   <v-container>
-    <v-layout>
-      <span class="display-1">Job Posted</span>
+    <span class="display-1">Job Posted</span>
+    <v-layout class="pa-2">
+      <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-tooltip slot="activator" top>
+          Add New Job Posting
+        <v-btn icon slot="activator"><v-icon>add</v-icon></v-btn>
+        </v-tooltip>
+        <new-job @showDialog="toggleNewJobDialog"></new-job>
+      </v-dialog>
       <v-spacer/>
       <v-flex xs12 sm6>
         <v-text-field
@@ -13,14 +20,6 @@
       ></v-text-field>
       </v-flex>
     </v-layout>
-
-      <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-        <v-tooltip slot="activator" top>
-          Add New Job Posting
-        <v-btn icon slot="activator"><v-icon>add</v-icon></v-btn>
-        </v-tooltip>
-        <new-job @showDialog="toggleNewJobDialog"></new-job>
-      </v-dialog>
 
       <div v-for="(job,i) in filteredJobs" :key="i">
         <v-flex>
@@ -43,17 +42,13 @@
               <v-dialog v-model="quickEditDialog" persistent max-width="500px">
                 <v-tooltip top slot="activator">
                   Edit Job Posting
-                  <v-btn icon slot="activator" fab small class="mr-3">
-                    <v-icon>edit</v-icon>
-                  </v-btn>
+                  <v-btn icon slot="activator" class="mr-3"><v-icon>edit</v-icon></v-btn>
                 </v-tooltip>
                 <job-details @showDialog="toggleQuickEditDialog"></job-details>
               </v-dialog>
               <v-tooltip top>
-                  Edit Job Posting
-              <v-btn icon  slot="activator">
-                <v-icon>share</v-icon>
-              </v-btn>
+                  Share Job Posting
+              <v-btn icon slot="activator"><v-icon>share</v-icon></v-btn>
               </v-tooltip>
               <v-btn icon @click="job.showDetails = !job.showDetails">
                 <v-icon>{{ job.showDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
@@ -73,41 +68,100 @@
 
 
 <script>
+import JobDetails from "./DialogJobDetails"
+import NewJob from './DialogNewJob'
 
   export default {
-    data () {
+    components: {JobDetails, NewJob},
+    data(){
       return {
-        chips: [],
-        items: ['Java', 'C#', 'Python'],
-        applicants:[
-        {id:1, skills:['Java ',' , C#',' , Python'], views:'Number of views : 12'},
-        {id:2, skills:['C# ',' , Java',' , Python'], views:'Number of views : 10'},
-        {id:3, skills:['Python ',' , C#',' , Java'], views:'Number of views : 2'},
-        {id:4, skills:['Python ',' , Java',' , C#'], views:'Number of views : 1'},
-        ]
-      }
-    },
-    computed:{
-        selectedItems(){
-    if(this.chips.length==0){
-        return this.applicants;
+      show: false,
+      dialog: false,
+      cardItems: [
+        {
+          code: '001',
+          headline: 'Software Engineer (Java)',
+          icon: 'fab fa-java',
+          newApplicants: 18,
+          subtitle: 'active for 2 days, closing in 15 days',
+          showDetails: false,
+          details: 'Designing, implementing, and maintaining Java applications that are often high-volume and low-latency Applications Delivering high availability and performance Contributing in all phases of the development lifecycle Writing well-designed, efficient, and testable code'
+        },
+        {
+          code: '002',
+          headline: 'Front-End Developer',
+          icon: 'fab fa-js-square',
+          newApplicants: 25,
+          subtitle: 'active for 4 days, closing in 12 days',
+          showDetails: false,
+          details: 'Experienced in developing user-facing UI features for the web. Enjoys building reusable code and libraries UI components in the design system. Does not shy away from having your codes reviewed by your peers.'
+        },
+        {
+          code: '003',
+          headline: 'Database Administrator',
+          icon: 'fas fa-database',
+          newApplicants: 8,
+          subtitle: 'active for 5 days, closing in 11 days',
+          showDetails: false,
+          details: 'Designing, implementing, and maintaining Java applications that are often high-volume and low-latency Applications Delivering high availability and performance Contributing in all phases of the development lifecycle Writing well-designed, efficient, and testable code'
+        },
+        {
+          code: '004',
+          headline: 'Android Engineer',
+          icon: 'fab fa-android',
+          newApplicants: 12,
+          subtitle: 'active for 5 days, closing in 10 days',
+          showDetails: false,
+          details: 'Designing, implementing, and maintaining Java applications that are often high-volume and low-latency Applications Delivering high availability and performance Contributing in all phases of the development lifecycle Writing well-designed, efficient, and testable code'
+        },
+        {
+          code: '005',
+          headline: 'IOS Developer',
+          newApplicants: 3,
+          icon: 'fab fa-app-store-ios',
+          subtitle: 'active for 6 days, closing in 8 days',
+          showDetails: false,
+          details: 'Designing, implementing, and maintaining Java applications that are often high-volume and low-latency Applications Delivering high availability and performance Contributing in all phases of the development lifecycle Writing well-designed, efficient, and testable code'
+        },
+        {
+          code: '006',
+          headline: 'Graduate Program',
+          newApplicants: 35,
+          icon: 'fas fa-graduation-cap',
+          subtitle: 'active for 15 days, closing in 20 days',
+          showDetails: false,
+          details: 'Develop, design and maintain technologies that improve the way our clients and the world works. Transform technology trends into solutions that meet client requirements from analysis to implementation.'
         }
-    else if (this.chips.length==1){
-        return this.applicants;
-        }     
-    else if (this.chips.length==2){
-        return this.applicants;
-        }
-    else if (this.chips.length==3){
-        return this.applicants;
-        }
-    }   
+      ],
+      quickEditDialog: false,
+      newJobDialog: false,
+      search: ''
+    }
     },
     methods: {
-      remove (item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
+      toggleDialog(payload) {
+        this.dialog = payload
+      },
+      toggleQuickEditDialog(payload) {
+        this.quickEditDialog = payload
+      },
+      toggleNewJobDialog(payload) {
+        this.newJobDialog = payload
+      },
+      filterJobs(query) {
+        console.log(this.cardItems)
+        this.cardItems = this.cardItems.filter(job => {
+          job.headline.toLowerCase().indexOf(query.toLowerCase()) > -1
+        })
+        console.log(this.cardItems)
+      }
+    },
+    computed: {
+      filteredJobs() {
+        return this.cardItems.filter(job => {
+          return job.headline.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        })
       }
     }
-}
+  }
 </script>
