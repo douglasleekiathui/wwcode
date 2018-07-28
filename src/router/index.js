@@ -35,6 +35,13 @@ export default new Router({
       }
     },
     {
+      path: '/jobs',
+      components: {
+        default:Jobs,
+        layout:CompanyLayout
+      }
+    },
+    {
       path: '/jobs/details',
       name: 'JobDetailsPage',
       components: {
