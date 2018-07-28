@@ -183,6 +183,8 @@
 </template>
 
 <script>
+    import firebase from 'firebase'
+
     export default {
       name: "NewJob",
       data: () => ({
@@ -220,15 +222,23 @@
         submit () {
           console.log('posted New job: ', this.job)
           // submitting to server
-          // if (this.$refs.form.validate()) {
-          //   // Native form submission is not yet supported
-          //   axios.post('/api/submit', {
-          //     name: this.name,
-          //     email: this.email,
-          //     select: this.select,
-          //     checkbox: this.checkbox
-          //   })
-          // }
+          if (this.$refs.form.validate()) {
+            let db = firebase.firestore()
+            let jobsRef = db.collection('jobs')
+            let job = {
+              post_date: new Date(),
+              headline: this.job.title,
+              icon: 'fas fa-database',
+              newApplicants: 0,
+              subtitle: this.job.overview,
+              showDetails: false,
+              details: this.job.description
+            };
+            let uniqueId  = jobsRef.doc()
+            uniqueId.set(job)
+            console.log('UniqueId: ' + uniqueId.id);
+            this.$emit('showDialog', false)
+          }
         },
         clear () {
           this.$refs.form.reset()

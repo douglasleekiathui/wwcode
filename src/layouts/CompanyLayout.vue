@@ -106,10 +106,7 @@ export default {
           ]},
           {icon: 'settings', title: 'Settings', path: '/settings'},
         ],
-      menu:[
-          {title:'Jobs Posted',path:'/'},
-          {title:'Browse Job Seekers',path:'/seekers'}
-      ],
+
       miniVariant: false,
       title: 'TechFolio'
     }
@@ -123,4 +120,3 @@ export default {
   color: white;
 }
 </style>
-
