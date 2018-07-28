@@ -37,6 +37,16 @@
           <v-btn flat v-for="(m,i) in menu" :to="m.path" :key="i">{{m.title}}</v-btn>
       </v-toolbar-items>
       <v-spacer/>
+
+        <v-menu offset-y>
+          <v-btn slot="activator" icon><v-icon>person</v-icon></v-btn>
+          <v-list>
+            <v-list-tile to="/login">
+              <v-list-tile-title>Logout</v-list-tile-title>
+            </v-list-tile>
+          </v-list>       
+        </v-menu>
+
     </v-toolbar>
     <v-content>
       <slot/>
