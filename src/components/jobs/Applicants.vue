@@ -25,6 +25,8 @@
                 </ul>
             </div>
             <br>
+            <v-divider></v-divider>
+            <br>
             <div><h2>Standardised Tests Taken</h2></div>
             <br>
                 <v-data-table
@@ -39,6 +41,8 @@
                 </template>
               </v-data-table>               
             <br>
+            <br>
+            <v-divider></v-divider>
             <br>
             <div><h2>Applicant Writeup</h2></div>
             <br>
@@ -127,7 +131,7 @@
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
     <!-- dialog for sending test portion -->
-    <v-dialog v-model="dialog_test" scrollable max-width="300px">
+    <v-dialog v-model="dialog_test" scrollable max-width="500px">
       <v-btn slot="activator" color="green" dark>Send Test(s)</v-btn>
       <v-card>
         <v-card-title>
@@ -189,6 +193,7 @@ export default {
         dialog_test: false,
         dialog_interview: false,
         dialog_message: false,
+        menu: false,
         select: ["08:30", "09:00", "09.30"],
         StandardTestHeaders: [
           {
