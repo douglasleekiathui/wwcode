@@ -206,7 +206,7 @@ export default {
     }
     },
     mounted(){
-        console.log(this.$route.params.id);
+        console.log(this.$route.params.userId);
         var items =[
             {id:1,
             TechnicalSkills:["C#", "SQL", "MongoDB", "Azure", "Linux", "Jenkins"],
@@ -222,7 +222,7 @@ export default {
             }
         ];
         items.forEach(data => {
-            if(data.id == this.$route.params.id){
+            if(data.id == this.$route.params.userId){
                 this.item = data;
             }           
         });
