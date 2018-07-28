@@ -1,6 +1,30 @@
 <template>
   <div>
-      <div v-for="job in cardItems">
+    <v-toolbar
+      color="teal lighten-3"
+      dark
+      scroll-off-screen
+      scroll-target="#scrolling-techniques"
+    >
+      <v-toolbar-title>Job Postings</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-flex xs6 sm3>
+      <v-text-field
+        hide-details
+        append-icon="search"
+        type="text"
+        clearable
+        v-model="search"
+      ></v-text-field>
+      </v-flex>
+
+        <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <v-btn slot="activator" color="primary" dark>New Job</v-btn>
+          <new-job @showDialog="toggleNewJobDialog"></new-job>
+        </v-dialog>
+    </v-toolbar>
+
+      <div v-for="job in filteredJobs">
         <v-flex>
           <v-card class="ma-2">
             <v-card-title primary-title>
@@ -10,11 +34,11 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-dialog v-model="dialog" persistent max-width="500px">
-                <v-btn slot="activator" color="cyan" fab small dark class="mr-3">
+              <v-dialog v-model="quickEditDialog" persistent max-width="500px">
+                <v-btn slot="activator" color="teal lighten-3" fab small dark class="mr-3">
                   <v-icon>edit</v-icon>
                 </v-btn>
-                <job-details @showDialog="toggleDialog"></job-details>
+                <job-details @showDialog="toggleQuickEditDialog"></job-details>
               </v-dialog>
                   <v-btn color="warning mr-2" @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
               <v-badge>
@@ -24,6 +48,9 @@
               <v-spacer></v-spacer>
               <v-btn icon @click="job.showDetails = !job.showDetails">
                 <v-icon>{{ job.showDetails ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+              </v-btn>
+              <v-btn icon>
+                <v-icon>share</v-icon>
               </v-btn>
             </v-card-actions>
 
@@ -35,20 +62,20 @@
           </v-card>
         </v-flex>
       </div>
-      <v-layout row>
-
-      </v-layout>
   </div>
 </template>
 
 <script>
-  import JobDetails from "./jobDetails";
+  import JobDetails from "./DialogJobDetails";
+  import NewJob from './DialogNewJob';
   export default {
-    components: {JobDetails},
+    components: {JobDetails, NewJob},
     data: () => ({
       show: false,
-      dialog: false,
-      cardItems: [
+      quickEditDialog: false,
+      newJobDialog: false,
+      search: '',
+      jobItems: [
         {
           code: '001',
           headline: 'Software Engineer (Java)',
@@ -106,8 +133,26 @@
       ]
     }),
     methods: {
-      toggleDialog(payload) {
-        this.dialog = payload
+      toggleQuickEditDialog(payload) {
+        this.quickEditDialog = payload
+      },
+      toggleNewJobDialog(payload) {
+        this.newJobDialog = payload
+      },
+      filterJobs(query) {
+        console.log(this.cardItems)
+        this.cardItems = this.cardItems.filter(job => {
+          console.log(job.headline)
+          job.headline.toLowerCase().indexOf(query.toLowerCase()) > -1
+        })
+        console.log(this.cardItems)
+      }
+    },
+    computed: {
+      filteredJobs() {
+        return this.jobItems.filter(job => {
+          return job.headline.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        })
       }
     }
   }
