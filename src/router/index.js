@@ -9,6 +9,7 @@ import Settings from '@/components/Settings'
 import Construction from '@/components/Construction'
 import Construction2 from '@/components/Construction2'
 import Construction3 from '@/components/Construction3'
+import UnderConstruction from '@/components/UnderConstruction'
 
 import Jobs from '@/components/jobs/Index'
 import Details from '@/components/jobs/DetailsPage'
@@ -53,6 +54,13 @@ export default new Router({
       }
     },
     {
+      path: '/500',
+      components: {
+        default:UnderConstruction,
+        layout:CompanyLayout
+      }
+    },
+    {
       path: '/',
       components: {
         default:Jobs,
@@ -83,7 +91,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:jobId/:userId',
+      path: '/jobs/1/1',
       name: 'Applicant',
       components: {
         default:Applicant,

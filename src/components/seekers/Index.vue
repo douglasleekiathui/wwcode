@@ -73,7 +73,6 @@
     else if (this.chips.length==1){
           var array= [];
           var vm = this
-          console.log(this.applicants)
           for(var key in this.applicants)
           {
             console.log(this.applicants[key]);
@@ -85,10 +84,28 @@
           return array;
         }     
     else if (this.chips.length==2){
-        return this.applicants;
+        var array2 = [];
+        var vm = this
+        for(var key in this.applicants)
+        {
+          if(this.applicants[key].skills.some(j => vm.chips.includes(j)))
+          {
+            array2.push(this.applicants[key]);
+          }
+        }
+        return array2;
         }
     else if (this.chips.length==3){
-        return this.applicants;
+        var array3 = [];
+        var vm = this
+        for(var key in this.applicants)
+        {
+          if(this.applicants[key].skills.some(k => vm.chips.includes(k)))
+          {
+            array3.push(this.applicants[key]);
+          }
+        }
+        return array3;
         }
     }   
     },
