@@ -24,14 +24,15 @@
       <v-container>
   
     <v-card-title primary-title>
-    <v-card dark
-    class="ma-2 pa-2"
+    <v-card dark 
+    class="ma-2 pa-2" style="width:200px"
         v-for="i in selectedItems" 
         :key="i.id">
-        <v-icon>face</v-icon>
-    <div class="headline">
+        
+    <div>
       {{ i.id }}
       </div>
+      <p class="text-md-center"><v-icon>face</v-icon></p>
     <span v-for="s in i.skills">
       {{s}}
       </span>
@@ -58,10 +59,10 @@
         chips: [],
         items: ['Java', 'C#', 'Python'],
         applicants:[
-        {id:1, skills:['Java ',' , C#',' , Python'], views:'Number of views : 12'},
-        {id:2, skills:['C# ',' , Java',' , Python'], views:'Number of views : 10'},
-        {id:3, skills:['Python ',' , C#',' , Java'], views:'Number of views : 2'},
-        {id:4, skills:['Python ',' , Java',' , C#'], views:'Number of views : 1'},
+        {id:1, skills:['C# ',' , MSSQL',' , MongoDB'], views:'Number of views : 12'},
+        {id:2, skills:['Java ',' , HTML',' , CSS'], views:'Number of views : 10'},
+        {id:3, skills:['Java ',' , C#',' , CSS'], views:'Number of views : 2'},
+        {id:4, skills:['Python ',' , NoSQL',' , MongoDB'], views:'Number of views : 1'},
         ]
       }
     },

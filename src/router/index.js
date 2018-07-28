@@ -6,10 +6,14 @@ import CompanyLayout from '@/layouts/CompanyLayout'
 
 import Login from '@/components/Login'
 import Settings from '@/components/Settings'
+import Construction from '@/components/Construction'
+import Construction2 from '@/components/Construction2'
+import Construction3 from '@/components/Construction3'
 
 import Jobs from '@/components/jobs/Index'
 import Details from '@/components/jobs/DetailsPage'
-import Applicants from '@/components/jobs/Applicants'
+import Applicant from '@/components/jobs/Applicant'
+import Applications from '@/components/jobs/Applications'
 
 import Seekers from '@/components/seekers/Index'
 import SeekerDetails from '@/components/seekers/Details'
@@ -25,6 +29,27 @@ export default new Router({
       components: {
         default:Login,
         layout:BasicLayout
+      }
+    },
+    {
+      path: '/construction',
+      components: {
+        default:Construction,
+        layout:CompanyLayout
+      }
+    },
+    {
+      path: '/construction2',
+      components: {
+        default:Construction2,
+        layout:CompanyLayout
+      }
+    },
+    {
+      path: '/construction3',
+      components: {
+        default:Construction3,
+        layout:CompanyLayout
       }
     },
     {
@@ -50,10 +75,18 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:id',
-      name: 'Applicants',
+      path: '/jobs/:jobId',
+      name: 'Applications',
       components: {
-        default:Applicants,
+        default:Applications,
+        layout:CompanyLayout
+      }
+    },
+    {
+      path: '/jobs/:jobId/:userId',
+      name: 'Applicant',
+      components: {
+        default:Applicant,
         layout:CompanyLayout
       }
     },
