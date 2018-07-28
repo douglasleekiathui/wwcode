@@ -1,46 +1,74 @@
 <template>
-<div>
-  <v-combobox
-    v-model="chips"
-    :items="items"
-    label="Search Keywords"
-    chips
-    clearable
-    solo
-    multiple
-  >
-    <template slot="selection" slot-scope="data">
-      <v-chip
-        :selected="data.selected"
-        close
-        @input="remove(data.item)"
-      >
-        <strong>{{ data.item }}</strong>&nbsp;
-      </v-chip>
-    </template>
-  </v-combobox>
-<v-card>
-<v-flex>
-      <v-container fluid grid-list-lg>
-    <v-card color="grey darken-7" class="white--text"> 
-    <v-card-title primary-title>
-    <div 
-        v-for="i in selectedItems" 
-        :key="i.id">
-        <v-icon>face</v-icon>
-    <div class="headline">{{ i.id }}</div>
-    <span v-for="s in i.skills">{{s}}</span>
-    <div>{{ i.views }}</div>
-    <v-card-actions>
-    <v-btn flat blue>View Profile</v-btn>
-    </v-card-actions>
-    </div>
-    </v-card-title>
-</v-card>
-</v-container>
-</v-flex>
-    </v-card>
-    </div>
+  <v-container>
+    <v-layout>
+      <span class="display-1">Job Posted</span>
+      <v-spacer/>
+      <v-flex xs12 sm6>
+        <v-text-field
+        hide-details
+        append-icon="search"
+        type="text"
+        clearable
+        v-model="search"
+      ></v-text-field>
+      </v-flex>
+    </v-layout>
+
+      <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-tooltip slot="activator" top>
+          Add New Job Posting
+        <v-btn icon slot="activator"><v-icon>add</v-icon></v-btn>
+        </v-tooltip>
+        <new-job @showDialog="toggleNewJobDialog"></new-job>
+      </v-dialog>
+
+      <div v-for="(job,i) in filteredJobs" :key="i">
+        <v-flex>
+          <v-card class="ma-3">
+            <v-card-title primary-title>
+              <div>
+                <div class="title"><i :class="job.icon"></i> {{job.headline}}</div>
+                <span class="grey--text">{{job.subtitle}}</span>
+              </div>
+            </v-card-title>
+            <v-card-actions>
+              
+              <v-btn @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
+              <v-btn @click="$router.push({name: 'Applicants'})">
+                <v-badge><span slot="badge">{{job.newApplicants}}</span>View Applications</v-badge>
+              </v-btn>
+
+              <v-spacer></v-spacer>
+
+              <v-dialog v-model="quickEditDialog" persistent max-width="500px">
+                <v-tooltip top slot="activator">
+                  Edit Job Posting
+                  <v-btn icon slot="activator" fab small class="mr-3">
+                    <v-icon>edit</v-icon>
+                  </v-btn>
+                </v-tooltip>
+                <job-details @showDialog="toggleQuickEditDialog"></job-details>
+              </v-dialog>
+              <v-tooltip top>
+                  Edit Job Posting
+              <v-btn icon  slot="activator">
+                <v-icon>share</v-icon>
+              </v-btn>
+              </v-tooltip>
+              <v-btn icon @click="job.showDetails = !job.showDetails">
+                <v-icon>{{ job.showDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
+              </v-btn>
+            </v-card-actions>
+
+            <v-slide-y-transition>
+              <v-card-text v-show="job.showDetails">
+                {{job.details}}
+              </v-card-text>
+            </v-slide-y-transition>
+          </v-card>
+        </v-flex>
+      </div>
+  </v-container>
 </template>
 
 
