@@ -77,9 +77,11 @@ import firebase from 'firebase'
     components: {JobDetails, NewJob},
     data(){
       return {
-      show: false,
-      dialog: false,
-      cardItems: [
+        show: false,
+        dialog: false,
+        chips: ['Java', 'Spring Framework', 'REST Web Services', 'Version control'],
+        items: ['Java', 'Spring Framework', 'REST Web Services', 'Version control','MySQL', 'JUnit', 'JQuery', 'Hibernate', 'Eclipse IDE', 'SCRUM'],
+        cardItems: [
         {
           code: '001',
           headline: 'Software Engineer (Java)',
@@ -137,7 +139,7 @@ import firebase from 'firebase'
       ],
       quickEditDialog: false,
       newJobDialog: false,
-      search: ''
+      search: '',
     }
     },
     methods: {

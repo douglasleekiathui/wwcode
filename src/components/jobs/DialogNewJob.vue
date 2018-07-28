@@ -90,7 +90,7 @@
               :close-on-content-click="false"
               v-model="menu"
               :nudge-right="40"
-              :return-value.sync="date"
+              :return-value.sync="job.closingDate"
               lazy
               transition="scale-transition"
               offset-y
@@ -99,12 +99,12 @@
             >
               <v-text-field
                 slot="activator"
-                v-model="date"
+                v-model="job.closingDate"
                 label="Closing Date"
                 prepend-icon="event"
                 readonly
               ></v-text-field>
-              <v-date-picker v-model="date" no-title scrollable>
+              <v-date-picker v-model="job.closingDate" no-title scrollable>
                 <v-spacer></v-spacer>
                 <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
                 <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
@@ -176,7 +176,6 @@
         >
           Publish Job Now
         </v-btn>
-        </v-btn>
       </v-flex>
       </v-container>
     </v-form>
@@ -193,6 +192,7 @@
         widgets: false,
         valid: false,
         checkbox: false,
+        menu: false,
         job: {
           title: '',
           overview: '',
@@ -212,7 +212,9 @@
         emailRules: [
           v => !!v || 'E-mail is required',
           v => /.+@.+/.test(v) || 'E-mail must be valid'
-        ]
+        ],
+        chips: ['Java', 'Spring Framework', 'REST Web Services', 'Version control'],
+        items: ['Java', 'Spring Framework', 'REST Web Services', 'Version control','MySQL', 'JUnit', 'JQuery', 'Hibernate', 'Eclipse IDE', 'SCRUM']
       }),
       methods: {
         submit () {
@@ -230,6 +232,13 @@
         },
         clear () {
           this.$refs.form.reset()
+        },
+        save () {
+          console.log('job saved: ', this.job)
+        },
+        remove (item) {
+          this.chips.splice(this.chips.indexOf(item), 1)
+          this.chips = [...this.chips]
         }
       }
     }
