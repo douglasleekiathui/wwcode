@@ -171,7 +171,7 @@
       </v-card>
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
-            <v-btn @click="nothing" color="primary">Return to List</v-btn>
+            <v-btn @click="returnApplicationList" color="primary">Return to List</v-btn>
         </v-card-actions>
     </v-card>
     </v-layout>
@@ -223,12 +223,9 @@ export default {
         });
     },
     methods:{
-        submit(){
-            if (this.$refs.form.validate()) {
-                if(this.name===this.password){
+        returnApplicationList(){
                     this.$router.push('/');
-                }
-            }
+            
         }
     }
 }
