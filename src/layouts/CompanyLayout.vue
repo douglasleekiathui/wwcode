@@ -52,7 +52,7 @@
       <slot/>
     </v-content>
 
-    <v-footer :fixed="fixed" app>
+    <v-footer app>
       <v-spacer/><span>&copy; 2018</span><v-spacer/>
     </v-footer>
   </v-app>
@@ -68,12 +68,13 @@ export default {
       items: [
           {icon: 'settings', title: 'Settings', path: '/settings'},
           {icon: 'assignments', title: 'Jobs Posted', path:"/"},
-          {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'}
+          {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'},
+          {icon: 'assignment_late', title: 'Review on Take-Home-Assignment', path:"/"},
+          {icon: 'assignment_turned_in', title: 'Review Online-Test', path:"/"},
+          {icon: 'assignment_ind', title: 'On-Site Interview Schedule', path:"/"}
+
         ],
-      menu:[
-          {title:'Jobs Posted',path:'/'},
-          {title:'Browse Job Seekers',path:'/seekers'}
-      ],
+
       miniVariant: false,
       title: 'TechFolio'
     }
@@ -87,4 +88,3 @@ export default {
   color: white;
 }
 </style>
-
