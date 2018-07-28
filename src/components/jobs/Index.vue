@@ -71,6 +71,7 @@
 import JobDetails from "./DialogJobDetails"
 import NewJob from './DialogNewJob'
 import firebase from 'firebase'
+import JobsData from './JobsData'
 
   export default {
     components: {JobDetails, NewJob},
@@ -92,7 +93,7 @@ import firebase from 'firebase'
         },
         {
           code: '002',
-          headline: 'Front-End Developer',
+          headline: 'Frontend Developer',
           icon: 'fab fa-js-square',
           newApplicants: 25,
           subtitle: 'active for 4 days, closing in 12 days',
@@ -101,7 +102,7 @@ import firebase from 'firebase'
         },
         {
           code: '003',
-          headline: 'Database Administrator',
+          headline: 'Frontend Developer (Internship)',
           icon: 'fas fa-database',
           newApplicants: 8,
           subtitle: 'active for 5 days, closing in 11 days',
