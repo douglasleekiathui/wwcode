@@ -56,7 +56,7 @@
       }
     },
     computed:{
-       selectedItems(){
+        selectedItems(){
     if(this.chips.length==0){
         return this.applicants;
         }
