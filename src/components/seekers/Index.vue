@@ -20,8 +20,9 @@
     </template>
   </v-combobox>
 <v-card>
+<v-flex>
       <v-container fluid grid-list-lg>
-<v-card color="blue-grey darken-2" class="white--text"> 
+    <v-card color="grey darken-7" class="white--text"> 
     <v-card-title primary-title>
     <div 
         v-for="i in selectedItems" 
@@ -30,13 +31,14 @@
     <div class="headline">{{ i.id }}</div>
     <span v-for="s in i.skills">{{s}}</span>
     <div>{{ i.views }}</div>
+    <v-card-actions>
+    <v-btn flat blue>View Profile</v-btn>
+    </v-card-actions>
     </div>
     </v-card-title>
-    <v-card-actions>
-    <v-btn flat dark>View Profile</v-btn>
-    </v-card-actions>
 </v-card>
 </v-container>
+</v-flex>
     </v-card>
     </div>
 </template>
@@ -50,8 +52,10 @@
         chips: [],
         items: ['Java', 'C#', 'Python'],
         applicants:[
-        {id:1, skills:['Java','Node'], views:'Number of views : 10'},
-        {id:2, skills:['C#','SQL'], views:'Number of views : 12'}
+        {id:1, skills:['Java ',' , C#',' , Python'], views:'Number of views : 12'},
+        {id:2, skills:['C# ',' , Java',' , Python'], views:'Number of views : 10'},
+        {id:3, skills:['Python ',' , C#',' , Java'], views:'Number of views : 2'},
+        {id:4, skills:['Python ',' , Java',' , C#'], views:'Number of views : 1'},
         ]
       }
     },
@@ -60,16 +64,16 @@
     if(this.chips.length==0){
         return this.applicants;
         }
-            var arrayToReturn=[];
-            this.applicants.forEach(e=>{
-                e.skills.forEach(s=>{
-                    if(this.chips.indexOf(s)){
-                        arrayToReturn.push(e);
-                    }
-                })
-            })
-            return arrayToReturn;
+    else if (this.chips.length==1){
+        return this.applicants;
+        }     
+    else if (this.chips.length==2){
+        return this.applicants;
         }
+    else if (this.chips.length==3){
+        return this.applicants;
+        }
+    }   
     },
     methods: {
       remove (item) {
