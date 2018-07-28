@@ -151,6 +151,8 @@ import firebase from 'firebase'
       },
       toggleNewJobDialog(payload) {
         this.newJobDialog = payload
+        this.cardItems = [];
+        this.fetchData();
       },
       filterJobs(query) {
         console.log(this.cardItems)
@@ -162,14 +164,14 @@ import firebase from 'firebase'
       fetchData() {
         let db = firebase.firestore()
         let jobsRef = db.collection('jobs')
-        jobsRef.get().then(snapshot => {
+        jobsRef.orderBy('post_date').get().then(snapshot => {
             snapshot.forEach(doc => {
               this.cardItems.push(doc.data());
           });
         }).catch(err => {
           console.log('Error getting documents', err);
         });
-      }
+      },
     },
     mounted(){
       this.fetchData()
