@@ -86,7 +86,7 @@
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
-            <v-menu
+            <!-- <v-menu
         ref="menu"
         :close-on-content-click="false"
         v-model="menu"
@@ -110,7 +110,27 @@
           <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
           <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
         </v-date-picker>
-      </v-menu>
+      </v-menu> -->
+             <v-menu
+          ref="menu"
+          :close-on-content-click="false"
+          v-model="menu"
+          :nudge-right="40"
+          lazy
+          transition="scale-transition"
+          offset-y
+          full-width
+          max-width="290px"
+          min-width="290px"
+        >
+          <v-text-field
+            slot="activator"
+            v-model="date"
+            label="Date"
+            prepend-icon="event"
+          ></v-text-field>
+          <v-date-picker v-model="date" no-title @input="menu = false"></v-date-picker>
+        </v-menu>
               <v-flex xs12>
               <v-select
               :items="select"
@@ -138,11 +158,13 @@
           <span class="headline">Select test(s) to send</span>
         </v-card-title>
         <v-divider></v-divider>
+        <v-card-text>
         <v-checkbox-group v-model="hello" column>
             <v-checkbox label="Java Beginner" value="JB1"></v-checkbox>
             <v-checkbox label="Java Advanced" value="JA1"></v-checkbox>
             <v-checkbox label="React Beginner" value="RA1"></v-checkbox>
         </v-checkbox-group>
+        </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click.native="dialog_test = false">Close</v-btn>
@@ -194,6 +216,7 @@ export default {
         dialog_interview: false,
         dialog_message: false,
         menu: false,
+        dateFormatted: null,
         select: ["08:30", "09:00", "09.30"],
         StandardTestHeaders: [
           {
