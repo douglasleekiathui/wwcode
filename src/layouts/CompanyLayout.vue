@@ -66,7 +66,9 @@ export default {
       drawer: true,
       fixed: false,
       items: [
-          {icon: 'settings', title: 'Settings', path: 'settings'}
+          {icon: 'settings', title: 'Settings', path: '/settings'},
+          {icon: 'assignments', title: 'Jobs Posted', path:"/"},
+          {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'}
         ],
       menu:[
           {title:'Jobs Posted',path:'/'},
