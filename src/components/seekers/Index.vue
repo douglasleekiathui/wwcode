@@ -24,14 +24,15 @@
       <v-container>
   
     <v-card-title primary-title>
-    <v-card dark
+    <v-card dark 
     class="ma-2 pa-2"
         v-for="i in selectedItems" 
         :key="i.id">
-        <v-icon>face</v-icon>
-    <div class="headline">
+        
+    <div>
       {{ i.id }}
       </div>
+      <p class="text-md-center"><v-icon>face</v-icon></p>
     <span v-for="s in i.skills">
       {{s}}
       </span>

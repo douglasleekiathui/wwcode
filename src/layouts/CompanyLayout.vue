@@ -33,9 +33,9 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items>
+      <!-- <v-toolbar-items>
           <v-btn flat v-for="(m,i) in menu" :to="m.path" :key="i">{{m.title}}</v-btn>
-      </v-toolbar-items>
+      </v-toolbar-items> -->
       <v-spacer/>
 
         <v-menu offset-y>
