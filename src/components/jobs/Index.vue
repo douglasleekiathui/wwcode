@@ -32,14 +32,12 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              
               <v-btn @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
-              <v-btn @click="$router.push({name: 'Applicants'})">
+              <!--<v-btn @click="$router.push({name: 'Applications', params: { jobId: job.code }})">-->
+              <v-btn @click="$router.push({path: '/jobs/1'})">
                 <v-badge><span slot="badge">{{job.newApplicants}}</span>View Applications</v-badge>
               </v-btn>
-
               <v-spacer></v-spacer>
-
               <v-dialog v-model="quickEditDialog" persistent max-width="500px">
                 <v-tooltip top slot="activator">
                   Edit Job Posting
@@ -80,7 +78,7 @@ import NewJob from './DialogNewJob'
         dialog: false,
         chips: ['Java', 'Spring Framework', 'REST Web Services', 'Version control'],
         items: ['Java', 'Spring Framework', 'REST Web Services', 'Version control','MySQL', 'JUnit', 'JQuery', 'Hibernate', 'Eclipse IDE', 'SCRUM'],
-        cardItems: [
+        jobItems: [
         {
           code: '001',
           headline: 'Software Engineer (Java)',
@@ -152,16 +150,16 @@ import NewJob from './DialogNewJob'
         this.newJobDialog = payload
       },
       filterJobs(query) {
-        console.log(this.cardItems)
-        this.cardItems = this.cardItems.filter(job => {
+        console.log(this.jobItems)
+        this.jobItems = this.jobItems.filter(job => {
           job.headline.toLowerCase().indexOf(query.toLowerCase()) > -1
         })
-        console.log(this.cardItems)
+        console.log(this.jobItems)
       }
     },
     computed: {
       filteredJobs() {
-        return this.cardItems.filter(job => {
+        return this.jobItems.filter(job => {
           return job.headline.toLowerCase().indexOf(this.search.toLowerCase()) > -1
         })
       }
