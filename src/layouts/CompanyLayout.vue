@@ -69,9 +69,9 @@ export default {
           {icon: 'settings', title: 'Settings', path: '/settings'},
           {icon: 'assignments', title: 'Jobs Posted', path:"/"},
           {icon: 'group', title: 'Browse Job Seekers', path: '/seekers'},
-          {icon: 'assignment_late', title: 'Review on Take-Home-Assignment', path:"/"},
-          {icon: 'assignment_turned_in', title: 'Review Online-Test', path:"/"},
-          {icon: 'assignment_ind', title: 'On-Site Interview Schedule', path:"/"}
+          {icon: 'assignment_late', title: 'Review on Take-Home-Assignment', path:"/construction"},
+          {icon: 'assignment_turned_in', title: 'Review Online-Test', path:"/construction2"},
+          {icon: 'assignment_ind', title: 'On-Site Interview Schedule', path:"/construction3"}
 
         ],
 

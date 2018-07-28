@@ -53,10 +53,10 @@
     data () {
       return {
         items: [
-          { active: true, title: 'Applicant 201807281111', action: '2018/09/06'},
-          { active: true, title: 'Applicant 201807282222', action: '2018/08/12' },
-          { title: 'Applicant 201807283333', action: '2018/07/01' },
-          { title: 'Applicant 201807284444', action:'2018/06/28' }
+          { active: true, title: 'Applicant 201807281111', action: '2018/06/28'},
+          { active: true, title: 'Applicant 201807282222', action: '2018/07/01' },
+          { title: 'Applicant 201807283333', action: '2018/08/16' },
+          { title: 'Applicant 201807284444', action:'2018/08/20' }
         ],
 
       }
