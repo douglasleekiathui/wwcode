@@ -5,11 +5,10 @@ import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
-<<<<<<< HEAD
+
 import '@fortawesome/fontawesome-free/css/all.css'
-=======
+
 import store from './store'
->>>>>>> a5a42fb90aecda764206dd39f4905882f8a9004e
 
 Vue.use(Vuetify, {
   theme: {
