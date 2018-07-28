@@ -69,6 +69,7 @@
 <script>
 import JobDetails from "./DialogJobDetails"
 import NewJob from './DialogNewJob'
+import firebase from 'firebase'
 
   export default {
     components: {JobDetails, NewJob},
@@ -148,6 +149,8 @@ import NewJob from './DialogNewJob'
       },
       toggleNewJobDialog(payload) {
         this.newJobDialog = payload
+        this.cardItems = [];
+        this.fetchData();
       },
       filterJobs(query) {
         console.log(this.jobItems)
@@ -155,14 +158,28 @@ import NewJob from './DialogNewJob'
           job.headline.toLowerCase().indexOf(query.toLowerCase()) > -1
         })
         console.log(this.jobItems)
-      }
+      },
+      fetchData() {
+        let db = firebase.firestore()
+        let jobsRef = db.collection('jobs')
+        jobsRef.orderBy('post_date').get().then(snapshot => {
+            snapshot.forEach(doc => {
+              this.cardItems.push(doc.data());
+          });
+        }).catch(err => {
+          console.log('Error getting documents', err);
+        });
+      },
+    },
+    mounted(){
+      this.fetchData()
     },
     computed: {
       filteredJobs() {
         return this.jobItems.filter(job => {
           return job.headline.toLowerCase().indexOf(this.search.toLowerCase()) > -1
         })
-      }
+      },
     }
   }
 </script>
