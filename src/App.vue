@@ -20,7 +20,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Techfolios'
+      title: 'TechFolio'
     }
   },
   name: 'App'

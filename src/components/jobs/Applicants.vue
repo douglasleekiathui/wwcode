@@ -52,8 +52,8 @@
         <v-card-actions>
             <v-spacer/>
     <!-- dialog for contact user portion -->
-    <v-dialog v-model="dialog_message" persistent max-width="500px">
-      <v-btn slot="activator" color="green" dark>Send Message</v-btn>
+    <v-dialog class="pa-1" v-model="dialog_message" persistent max-width="500px">
+      <v-btn slot="activator" color="primary" dark>Send Message</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Send Message</span>
@@ -76,8 +76,8 @@
     </v-dialog>
     <!-- End of dialog for contact applicant -->
         <!-- dialog for arrange interview portion -->
-    <v-dialog v-model="dialog_interview" persistent max-width="500px">
-      <v-btn slot="activator" color="green" dark>Arrange interview</v-btn>
+    <v-dialog class="pa-1" v-model="dialog_interview" persistent max-width="500px">
+      <v-btn slot="activator" color="primary" dark>Arrange interview</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Arrange interview</span>
@@ -86,31 +86,6 @@
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
-            <!-- <v-menu
-        ref="menu"
-        :close-on-content-click="false"
-        v-model="menu"
-        :nudge-right="40"
-        :return-value.sync="date"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        min-width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          v-model="date"
-          label="Select date"
-          prepend-icon="event"
-          readonly
-        ></v-text-field>
-        <v-date-picker v-model="date" no-title scrollable>
-          <v-spacer></v-spacer>
-          <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-          <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-        </v-date-picker>
-      </v-menu> -->
              <v-menu
           ref="menu"
           :close-on-content-click="false"
@@ -151,8 +126,8 @@
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
     <!-- dialog for sending test portion -->
-    <v-dialog v-model="dialog_test" scrollable max-width="500px">
-      <v-btn slot="activator" color="green" dark>Send Test(s)</v-btn>
+    <v-dialog class="pa-1" v-model="dialog_test" scrollable max-width="500px">
+      <v-btn slot="activator" color="primary" dark>Send Test(s)</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Select test(s) to send</span>
@@ -174,7 +149,7 @@
     </v-dialog>
     <!-- End of dialog for sending test interview -->
             <!-- dialog for arrange interview portion -->
-    <v-dialog v-model="dialog" persistent max-width="500px">
+    <v-dialog class="pa-1" v-model="dialog" persistent max-width="500px">
       <v-btn slot="activator" color="error" dark>Reject Candidate</v-btn>
       <v-card>
         <v-card-title>
@@ -197,7 +172,9 @@
       </v-card>
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
-            <v-btn @click="returnApplicationList" color="primary">Return to List</v-btn>
+    <v-dialog class="pa-1" v-model="placeholderForNothing">
+            <v-btn slot="activator" @click="returnApplicationList" color="primary">Return to List</v-btn>
+    </v-dialog>
         </v-card-actions>
     </v-card>
     </v-layout>
