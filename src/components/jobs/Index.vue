@@ -1,15 +1,10 @@
 <template>
-  <div>
-    <v-toolbar
-      color="teal lighten-3"
-      dark
-      scroll-off-screen
-      scroll-target="#scrolling-techniques"
-    >
-      <v-toolbar-title>Job Postings</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-flex xs6 sm3>
-      <v-text-field
+  <v-container>
+    <v-layout>
+      <span class="display-1">Job Posted</span>
+      <v-spacer/>
+      <v-flex xs12 sm6>
+        <v-text-field
         hide-details
         append-icon="search"
         type="text"
@@ -17,40 +12,51 @@
         v-model="search"
       ></v-text-field>
       </v-flex>
+    </v-layout>
 
-        <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-          <v-btn slot="activator" color="primary" dark>New Job</v-btn>
-          <new-job @showDialog="toggleNewJobDialog"></new-job>
-        </v-dialog>
-    </v-toolbar>
+      <v-dialog v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+        <v-tooltip slot="activator" top>
+          Add New Job Posting
+        <v-btn icon slot="activator"><v-icon>add</v-icon></v-btn>
+        </v-tooltip>
+        <new-job @showDialog="toggleNewJobDialog"></new-job>
+      </v-dialog>
 
-      <div v-for="job in filteredJobs">
+      <div v-for="(job,i) in filteredJobs" :key="i">
         <v-flex>
-          <v-card class="ma-2">
+          <v-card class="ma-3">
             <v-card-title primary-title>
               <div>
-                <div class="headline"><i :class="job.icon"></i> {{job.headline}}</div>
+                <div class="title"><i :class="job.icon"></i> {{job.headline}}</div>
                 <span class="grey--text">{{job.subtitle}}</span>
               </div>
             </v-card-title>
             <v-card-actions>
+              
+              <v-btn @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
+              <v-btn @click="$router.push({name: 'Applicants'})">
+                <v-badge><span slot="badge">{{job.newApplicants}}</span>View Applications</v-badge>
+              </v-btn>
+
+              <v-spacer></v-spacer>
+
               <v-dialog v-model="quickEditDialog" persistent max-width="500px">
-                <v-btn slot="activator" color="teal lighten-3" fab small dark class="mr-3">
-                  <v-icon>edit</v-icon>
-                </v-btn>
+                <v-tooltip top slot="activator">
+                  Edit Job Posting
+                  <v-btn icon slot="activator" fab small class="mr-3">
+                    <v-icon>edit</v-icon>
+                  </v-btn>
+                </v-tooltip>
                 <job-details @showDialog="toggleQuickEditDialog"></job-details>
               </v-dialog>
-                  <v-btn color="warning mr-2" @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
-              <v-badge>
-                <span slot="badge">{{job.newApplicants}}</span>
-                <v-btn color="success" @click="$router.push({name: 'Applicants'})">View Applications</v-btn>
-              </v-badge>
-              <v-spacer></v-spacer>
-              <v-btn icon @click="job.showDetails = !job.showDetails">
-                <v-icon>{{ job.showDetails ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-              </v-btn>
-              <v-btn icon>
+              <v-tooltip top>
+                  Edit Job Posting
+              <v-btn icon  slot="activator">
                 <v-icon>share</v-icon>
+              </v-btn>
+              </v-tooltip>
+              <v-btn icon @click="job.showDetails = !job.showDetails">
+                <v-icon>{{ job.showDetails ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</v-icon>
               </v-btn>
             </v-card-actions>
 
@@ -62,7 +68,7 @@
           </v-card>
         </v-flex>
       </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
