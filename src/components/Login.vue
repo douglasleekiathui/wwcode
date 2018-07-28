@@ -1,6 +1,6 @@
 <template>
 <v-container>
-    <v-layout align-center justify-center>
+    <v-layout column align-center justify-center>
     <v-card width="400">
         <v-toolbar color="primary" class="headline white--text">Login</v-toolbar>
         <v-card-text>
@@ -25,11 +25,19 @@
             <v-btn @click="submit">Login</v-btn>
         </v-card-actions>
     </v-card>
+
+    <v-btn width="400"
+    class="ma-3"
+    @click="googleLogin"
+    >Login with Google
+    </v-btn>
     </v-layout>
 </v-container>
 </template>
 
 <script>
+import firebase from 'firebase/app'
+
 export default {
     data(){
         return{
@@ -57,6 +65,19 @@ export default {
                     this.$router.push('/');
                 }
             }
+        },
+        googleLogin(){
+          var provider = new firebase.auth.GoogleAuthProvider();
+          provider.addScope('profile');
+          provider.addScope('email');
+          firebase.auth().signInWithPopup(provider).then(
+            (result) => {
+              let token = result.credential.accessToken;
+              let user = result.user;
+              if (token) {
+                this.$router.push('/');
+              }
+          });
         }
     }
 }
