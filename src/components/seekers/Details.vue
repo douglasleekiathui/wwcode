@@ -31,8 +31,8 @@
 
                 <div> <b>Team</b></div>
                 <ul style="list-style-type:square">
-                <li> Kaggle : <a href="https://www.kaggle.com/c/avito-demand-prediction/leaderboard">Avito Demand Prediction Challenge </a> Top25 / 1917 </li>
-                <li> Kaggle : <a href="https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection"> TalkingData AdTracking Fraud Detection Challenge </a> Top180 / 3967 </li>
+                <li> Kaggle : <a href="https://www.kaggle.com/c/avito-demand-prediction/leaderboard">Avito Demand Prediction Challenge </a> Top25 (1917 teams) </li>
+                <li> Kaggle : <a href="https://www.kaggle.com/c/talkingdata-adtracking-fraud-detection"> TalkingData AdTracking Fraud Detection Challenge </a> Top180 (3967 teams) </li>
                 </ul>
                 <br/>
             </div>
