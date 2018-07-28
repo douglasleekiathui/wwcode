@@ -2,7 +2,7 @@
   <v-layout row>
 
       <v-card width="800">
-        <v-toolbar color="teal" dark>
+        <v-toolbar color="primary" dark>
 
           <v-toolbar-title class="text-xs-center">Review Online Test</v-toolbar-title>
 
