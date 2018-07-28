@@ -91,7 +91,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:jobId/:userId',
+      path: '/jobs/1/1',
       name: 'Applicant',
       components: {
         default:Applicant,
