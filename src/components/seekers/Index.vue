@@ -21,22 +21,29 @@
   </v-combobox>
 <v-card>
 <v-flex>
-      <v-container fluid grid-list-lg>
-    <v-card color="grey darken-7" class="white--text"> 
+      <v-container>
+  
     <v-card-title primary-title>
-    <div 
+    <v-card dark 
+    class="ma-2 pa-2"
         v-for="i in selectedItems" 
         :key="i.id">
-        <v-icon>face</v-icon>
-    <div class="headline">{{ i.id }}</div>
-    <span v-for="s in i.skills">{{s}}</span>
+        
+    <div>
+      {{ i.id }}
+      </div>
+      <p class="text-md-center"><v-icon>face</v-icon></p>
+    <span v-for="s in i.skills">
+      {{s}}
+      </span>
     <div>{{ i.views }}</div>
     <v-card-actions>
-    <v-btn flat blue>View Profile</v-btn>
+    <v-btn @click="returnSeekerInfo(i.id)">View Profile</v-btn>
     </v-card-actions>
-    </div>
+
+    </v-card>
     </v-card-title>
-</v-card>
+
 </v-container>
 </v-flex>
     </v-card>
@@ -79,6 +86,10 @@
       remove (item) {
         this.chips.splice(this.chips.indexOf(item), 1)
         this.chips = [...this.chips]
+      },
+
+      returnSeekerInfo(item){
+                    this.$router.push('/seekers/' + item)
       }
     }
 }

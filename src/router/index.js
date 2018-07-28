@@ -12,7 +12,8 @@ import Construction3 from '@/components/Construction3'
 
 import Jobs from '@/components/jobs/Index'
 import Details from '@/components/jobs/DetailsPage'
-import Applicants from '@/components/jobs/Applicants'
+import Applicant from '@/components/jobs/Applicant'
+import Applications from '@/components/jobs/Applications'
 
 import Seekers from '@/components/seekers/Index'
 import SeekerDetails from '@/components/seekers/Details'
@@ -59,6 +60,13 @@ export default new Router({
       }
     },
     {
+      path: '/jobs',
+      components: {
+        default:Jobs,
+        layout:CompanyLayout
+      }
+    },
+    {
       path: '/jobs/details',
       name: 'JobDetailsPage',
       components: {
@@ -67,10 +75,18 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:id',
-      name: 'Applicants',
+      path: '/jobs/:jobId',
+      name: 'Applications',
       components: {
-        default:Applicants,
+        default:Applications,
+        layout:CompanyLayout
+      }
+    },
+    {
+      path: '/jobs/:jobId/:userId',
+      name: 'Applicant',
+      components: {
+        default:Applicant,
         layout:CompanyLayout
       }
     },
