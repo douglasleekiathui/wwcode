@@ -230,7 +230,6 @@ export default {
     methods:{
         returnApplicationList(){
                     this.$router.push('/');
-            
         }
     }
 }
