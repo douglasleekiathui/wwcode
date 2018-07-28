@@ -8,7 +8,7 @@
     <v-content>
       <slot/>
     </v-content>
-    <v-footer :fixed="fixed" app>
+    <v-footer app>
       <v-spacer/><span>&copy; 2018</span><v-spacer/>
     </v-footer>
   </v-app>
