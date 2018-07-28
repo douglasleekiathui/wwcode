@@ -32,7 +32,7 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              
+
               <v-btn @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
               <v-btn @click="$router.push({name: 'Applicants'})">
                 <v-badge><span slot="badge">{{job.newApplicants}}</span>View Applications</v-badge>
@@ -71,6 +71,7 @@
 <script>
 import JobDetails from "./DialogJobDetails"
 import NewJob from './DialogNewJob'
+import firebase from 'firebase'
 
   export default {
     components: {JobDetails, NewJob},
@@ -155,14 +156,28 @@ import NewJob from './DialogNewJob'
           job.headline.toLowerCase().indexOf(query.toLowerCase()) > -1
         })
         console.log(this.cardItems)
+      },
+      fetchData() {
+        let db = firebase.firestore()
+        let jobsRef = db.collection('jobs')
+        jobsRef.get().then(snapshot => {
+            snapshot.forEach(doc => {
+              this.cardItems.push(doc.data());
+          });
+        }).catch(err => {
+          console.log('Error getting documents', err);
+        });
       }
+    },
+    mounted(){
+      this.fetchData()
     },
     computed: {
       filteredJobs() {
         return this.cardItems.filter(job => {
           return job.headline.toLowerCase().indexOf(this.search.toLowerCase()) > -1
         })
-      }
+      },
     }
   }
 </script>
