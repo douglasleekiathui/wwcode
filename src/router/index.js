@@ -34,7 +34,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/applicants',
+      path: '/jobs/:id',
       components: {
         default:Applicants,
         layout:CompanyLayout
