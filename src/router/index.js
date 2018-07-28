@@ -9,7 +9,7 @@ import Settings from '@/components/Settings'
 
 import Jobs from '@/components/jobs/Index'
 import Details from '@/components/jobs/DetailsPage'
-import Applicants from '@/components/jobs/Applicants'
+import Applicant from '@/components/jobs/Applicant'
 
 import Seekers from '@/components/seekers/Index'
 import SeekerDetails from '@/components/seekers/Details'
@@ -51,9 +51,9 @@ export default new Router({
     },
     {
       path: '/jobs/:id',
-      name: 'Applicants',
+      name: 'Applicant',
       components: {
-        default:Applicants,
+        default:Applicant,
         layout:CompanyLayout
       }
     },
