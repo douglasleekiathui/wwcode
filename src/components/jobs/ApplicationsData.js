@@ -19,7 +19,7 @@ const ApplicationsData = [
   {id: 17, name: 'Paĉjo Jadon', description: 'Highly proficient in functional programming', registered: '2018/02/01', role: 'Developer', status: 'Reviewed', applied:'2018-04-25'},
   {id: 18, name: 'Micheal Mercurius', description: '3 years of Android development experience', registered: '2018/02/01', role: 'Developer', status: 'Reviewed', applied:'2018-04-23'},
   {id: 19, name: 'Ganesha Dubhghall', description: 'RPA developer with interest in front-end technologies', registered: '2018/03/01', role: 'Developer', status: 'Reviewed', applied:'2018-04-25'},
-  {id: 20, name: 'Hiroto Šimun', description: 'Experienced in embedded softwared development', registered: '2018/01/21', role: 'Developer', status: 'Reviewed', applied:'2018-04-24'},
+  {id: 20, name: 'Hiroto Šimun', description: 'Experienced in embedded software development', registered: '2018/01/21', role: 'Developer', status: 'Reviewed', applied:'2018-04-24'},
   {id: 21, name: 'Vishnu Serghei', description: 'Proficient in Spring Framework and Java technologies', registered: '2018/01/01', role: 'Developer', status: 'Reviewed', applied:'2018-04-24'},
   {id: 22, name: 'Zbyněk Phoibos', description: 'Close to 4 years of experience in Javascript and HTML/CSS', registered: '2018/02/01', role: 'Developer', status: 'Reviewed', applied:'2018-04-25'},
   {id: 23, name: 'Einar Randall', description: 'Passionate developer with high proficiency in database technologies', registered: '2018/02/01', role: 'Developer', status: 'Rejected', applied:'2018-04-24'},
