@@ -1,4 +1,7 @@
 <template>
+  <v-container>
+    <div class="pa-3 display-1">Company Profile Settings</div>
+    <br/>
   <v-card class="ma-3">
     <v-form
       class="pa-3" ref="form" v-model="valid" lazy-validation>
@@ -32,7 +35,9 @@
           v-model="checkbox"
           label="Require Test"
         ></v-checkbox>
-
+    </v-form>
+    <v-card-actions>
+      <v-spacer/>
         <v-btn
           :disabled="!valid"
           @click="snackbar = true"
@@ -40,7 +45,7 @@
           save
         </v-btn>
         <v-btn @click="clear">cancel</v-btn>
-      </v-form>
+    </v-card-actions>
     <v-snackbar
       v-model="snackbar"
       bottom=true
@@ -56,6 +61,7 @@
       </v-btn>
     </v-snackbar>
   </v-card>
+  </v-container>
 </template>
 
 <script>
