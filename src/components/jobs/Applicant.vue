@@ -1,13 +1,12 @@
 <template>
   <v-container>
-    <div class="pa-3 display-1">Applicant Details</div>
+    <div class="pa-3 display-1">Applicant Details <v-chip :color="getChipColor(item.status)" text-color="white">{{ item.status }}</v-chip></div>
     <br/>
     <v-layout align-center justify-center>
     <v-card width="">
         <v-card-text>
             <div>Application: {{item.id}}</div>
             <br>
-            <!-- <div>Status: Todo</div> -->
             <div><h2>Projects</h2></div>
             <div v-for="(Projects,i) in item.Projects" :key="i">
               <br>
@@ -250,6 +249,7 @@ export default {
         console.log(this.$route.params.applicant);
         var items =[
             {id:1,
+            status:"Reviewed",
             Projects:[{name:"Logic University Stationery Stock Inventory System", url:"http://www.LUSSIS.com",writeup:"A stationery inventory system for logic university using C# as backend and MongoDB as database. The inventory system shorten the average processing time from 4 days to 1 days. An accountability assessment also showed a 300% increase in the accountability of inventory under the new system as compared to the old manual system. The project was awarded with ISS-gold medal award."},{name:"Codeblue", url:"http://www.google.com",writeup:"A dashboard framework system that helps SME of Singapore to build dashboard application to link to their machine and transform data into useful information for process improvement. An average of 15% increment in productivity was reported by 26 Singapore SMEs. The system was developed on the MEAN stack to minimise cost of operation for the SMEs."},{name:"BlueMart Logistic System", url:"http://www.bluemart.com",writeup:"A logistic management for Blue Mart Singapore Pte Ltd. Improve the traceability of products using RFID tagging and other IOT solutions. The system allowed damaged perishable to be detected and result in a decrease of goods due to spoilage by 47%. This project was awarded with Blue Dot Design 2017"}],
             TechnicalSkills:["C#", "SQL", "MongoDB", "Azure", "Linux", "Jenkins"],
             OtherSkills:["Project Management", "Six Sigma", "Manufacturing Domain"],
@@ -258,6 +258,7 @@ export default {
             CompanyTest:[{name:"Advance Java", url:"http://www.google.com", number:80}, {name:"Basic SQL", url:"http://www.yahoo.com", number:20}]
             },
             {id:2,
+            status:"Invited",
             Projects:[{name:"Theslos University HR System", url:"http://www.google.com", writeup:"A HR system for Theslos University using Java and spring framework. The average processing time of candidate improved from 14 days to 3 days while satifaction of employees improved by 35%"}, {name:"BoothsWorth Architecture Drawing Application", url:"http://www.google.com", writeup:"A drawing application that integrates AutoCAD with BootsWorth Internal Project Managaement System that provide better monitoring and cost estimation for the company. BootsWorth reported a 300% incremenet of cost estimation accuracy and directors were able to closely monitor projects."}],
             TechnicalSkills:["Java", "HTML", "CSS", "React", "Structs", "Fortran"],
             OtherSkills:["Work Health Safety", "Finance & Banking"],
@@ -283,7 +284,12 @@ export default {
           :value >= 50 ? "yellow accent-2"
           :value >= 30 ? "orange accent-2"
           : "red"
-        }
+        },
+        getChipColor(status) {
+        return status === 'New' ? 'primary'
+          : status === 'Reviewed' ? 'secondary'
+            : status === 'Invited' ? 'success' : 'danger'
+      }
 
     }
 }
