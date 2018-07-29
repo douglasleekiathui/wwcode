@@ -1,5 +1,7 @@
 <template>
-<div>
+<v-container>
+  <div class="pa-3 display-1">All Talents</div>
+  <br/>
   <v-combobox
     v-model="chips"
     :items="items"
@@ -19,33 +21,28 @@
       </v-chip>
     </template>
   </v-combobox>
-<v-card>
-<v-flex>
-      <v-container>
-  
-    <v-card-title primary-title>
-    <v-card dark
-    class="ma-2 pa-2" style="width:200px"
-        v-for="i in selectedItems" 
-        :key="i.id">
-        
-    <div>
-      {{ i.id }}
-      </div>
-      <p class="text-md-center"><v-icon>face</v-icon></p>
-    {{arrayToString(i.skills)}}
-    <div>{{ i.views }}</div>
-    <v-card-actions>
-    <v-btn @click="returnSeekerInfo(i.id)">View Profile</v-btn>
-    </v-card-actions>
-
-    </v-card>
-    </v-card-title>
-
+  <v-card>
+    <v-layout wrap>
+      <flex xs4 v-for="i in selectedItems" style="min-width:250px" :key="i.id">
+        <v-card dark class="ma-2 pa-2">
+          {{ i.id }}
+          <v-card-text>
+            <br/>
+            <p class="text-md-center"><v-icon>face</v-icon></p>
+            {{arrayToString(i.skills)}}
+            <br/>
+            {{ i.views }}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer/>
+            <v-btn @click="returnSeekerInfo(i.id)">View Profile</v-btn>
+            <v-spacer/>
+          </v-card-actions>
+        </v-card>
+      </flex>
+    </v-layout>
+  </v-card>
 </v-container>
-</v-flex>
-    </v-card>
-    </div>
 </template>
 
 
