@@ -9,9 +9,9 @@
       class="elevation-1"
     >
       <template slot="items" slot-scope="props">
-        <tr @click="$router.push(`/jobs/${job.code}/applicant/${props.item.id}`)">
-          <td class="primary--text" style="cursor:pointer">{{ props.item.description }}</td>
-          <td>{{ props.item.role }}</td>
+        <tr style="cursor:pointer" @click="$router.push(`/jobs/${job.code}/applicant/${props.item.id}`)">
+          <td>{{ formatDate(props.item.applied) }}</td>
+          <td>{{ props.item.description }}</td>
           <td><v-chip :color="getChipColor(props.item.status)" text-color="white">{{ props.item.status }}</v-chip></td>
         </tr>
       </template>
@@ -32,13 +32,8 @@
         ApplicationsData,
         dialog: false,
         headers: [
-          {
-            text: 'Description',
-            align: 'left',
-            sortable: false,
-            value: 'Description'
-          },
-          { text: 'Role', value: 'Role' },
+          { text: 'Date Applied', value: 'applied' },
+          { text: 'Description',value: 'description'},
           { text: 'Status', value: 'Status' }
         ]
       }
@@ -54,6 +49,19 @@
       },
       toggleDialog() {
         this.dialog =!this.dialog
+      },
+      formatDate(date){
+        var d = new Date(date);
+        var dd = d.getDate();
+        var mm = d.getMonth()+1; //January is 0!
+        var yyyy = d.getFullYear();
+        if(dd<10){
+            dd='0'+dd;
+        } 
+        if(mm<10){
+            mm='0'+mm;
+        } 
+        return dd+'/'+mm+'/'+yyyy;
       }
     }
   }
