@@ -23,6 +23,9 @@
                 <ul>
                     <li v-for="(Skill,i) in item.TechnicalSkills" :key="i">
                     {{Skill}}
+                    <template>
+  <v-progress-linear height="5" v-model="valueDeterminate2[i]" :color="getScoreColour(valueDeterminate2[i])"></v-progress-linear>
+</template>
                  </li>
                 </ul>
             </div>
@@ -32,6 +35,9 @@
                 <ul>
                     <li v-for="(NSkill,i) in item.OtherSkills" :key="i">
                         {{NSkill}}
+                        <template>
+  <v-progress-linear height="5" v-model="valueDeterminate[i]" :color="getScoreColour(valueDeterminate[i])"></v-progress-linear>
+</template>
                     </li>
                 </ul>
             </div>
@@ -234,6 +240,8 @@ export default {
         menu: false,
         dateFormatted: null,
         select: ["08:30", "09:00", "09.30"],
+        valueDeterminate2: [50, 100, 80, 70, 90, 60],
+        valueDeterminate: [80, 50, 70],
         StandardTestHeaders: [
           {
             text: 'Test Name',
@@ -278,11 +286,11 @@ export default {
                     this.$router.push('/jobs/1');
         },
         getScoreColour(value){
-          return value >= 90 ? "green"
-          :value >= 80 ? "light-green accent-2"
-          :value >= 70 ? "lime accent-3"
-          :value >= 50 ? "yellow accent-2"
-          :value >= 30 ? "orange accent-2"
+          return value >= 90 ? "green darken-3"
+          :value >= 80 ? "green lighten-1"
+          :value >= 70 ? "light-green"
+          :value >= 50 ? "amber"
+          :value >= 30 ? "orange"
           : "red"
         },
         getChipColor(status) {

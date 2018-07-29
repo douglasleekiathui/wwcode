@@ -34,7 +34,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer/>
-            <v-btn @click="returnSeekerInfo(i.id)">View Profile</v-btn>
+            <v-btn depressed @click="returnSeekerInfo(i.id)">View Profile</v-btn>
             <v-spacer/>
           </v-card-actions>
         </v-card>
