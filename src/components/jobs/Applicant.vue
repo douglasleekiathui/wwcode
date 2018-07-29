@@ -1,5 +1,7 @@
 <template>
-<v-container>
+  <v-container>
+    <div class="pa-3 display-1">Applicant Details</div>
+    <br/>
     <v-layout align-center justify-center>
     <v-card width="">
         <v-card-text>
