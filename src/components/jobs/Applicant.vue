@@ -51,7 +51,27 @@
                   <td><a :href="props.item.url">{{ props.item.name }}</a></td>
                      <td><br><v-progress-circular
       :value="props.item.number"
-      :color="getScoreColour(props.item.colour)"
+      :color="getScoreColour(props.item.number)"
+      :size="100"
+      :width="15"
+    >{{props.item.number}}</v-progress-circular><br><br></td>
+                </template>
+              </v-data-table>               
+            <br>
+            <br>
+                        <div><h2>Tests Administered by My Company</h2></div>
+            <br>
+                <v-data-table
+                :headers="StandardTestHeaders"
+                :items="item.CompanyTest"
+                hide-actions
+                class="elevation-1"
+              >
+                <template slot="items" slot-scope="props">
+                  <td><a :href="props.item.url">{{ props.item.name }}</a></td>
+                     <td><br><v-progress-circular
+      :value="props.item.number"
+      :color="getScoreColour(props.item.number)"
       :size="100"
       :width="15"
     >{{props.item.number}}</v-progress-circular><br><br></td>
@@ -219,9 +239,10 @@ export default {
           {
             text: 'Test Name',
             align: 'left',
+            width: '55%',
             value: 'name'
           },
-          { text: 'Score', value: 'score' },
+          { text: 'Score', value: 'number' },
         ]
     }
     },
@@ -233,14 +254,16 @@ export default {
             TechnicalSkills:["C#", "SQL", "MongoDB", "Azure", "Linux", "Jenkins"],
             OtherSkills:["Project Management", "Six Sigma", "Manufacturing Domain"],
             WriteUp:"Hi, I came across your job posting and find it interesting. I have worked with various projects of various size in the past. I have also previously lead multiple teams for an application with more than 50 000 users monthly. I believe in a flat organization structure and believe I will be a good fit to the company. Feel free to contact me for further discussion of this role, I hope to hear from you soon",
-            StandardTest:[{name:"Codify C# for professional", url:"http://www.google.com", score:"30/50", number:60, colour:"lime accent-3"},{name:"Hacker Rank SQL Challenge", url:"http://www.hackerrank.com", score:"95/100", number:70, colour:"green"}]
+            StandardTest:[{name:"Codify C# for professional", url:"http://www.google.com", score:"30/50", number:60, colour:"lime accent-3"},{name:"Hacker Rank SQL Challenge", url:"http://www.hackerrank.com", score:"95/100", number:70, colour:"green"}],
+            CompanyTest:[{name:"Advance Java", url:"http://www.google.com", number:80}, {name:"Basic SQL", url:"http://www.yahoo.com", number:20}]
             },
             {id:2,
             Projects:[{name:"Theslos University HR System", url:"http://www.google.com", writeup:"A HR system for Theslos University using Java and spring framework. The average processing time of candidate improved from 14 days to 3 days while satifaction of employees improved by 35%"}, {name:"BoothsWorth Architecture Drawing Application", url:"http://www.google.com", writeup:"A drawing application that integrates AutoCAD with BootsWorth Internal Project Managaement System that provide better monitoring and cost estimation for the company. BootsWorth reported a 300% incremenet of cost estimation accuracy and directors were able to closely monitor projects."}],
             TechnicalSkills:["Java", "HTML", "CSS", "React", "Structs", "Fortran"],
             OtherSkills:["Work Health Safety", "Finance & Banking"],
             WriteUp:"I'm looking for opportunity to work in TechTech Pte Ltd, have experience working with teams of various capability. I have written a few open source technologies that have more than 100 000 users per month. Feel free to contact me for further discussion.",
-            StandardTest:[{name:"Codify Java for professional", url:"http://www.codify.com", score:"42/50", number:84, colour:"green"},{name:"Hacker Rank SQL Challenge", url:"http://www.hackerank.com", score:"85/100", number:30, colour:"red"}]
+            StandardTest:[{name:"Codify Java for professional", url:"http://www.codify.com", score:"42/50", number:84, colour:"green"},{name:"Hacker Rank SQL Challenge", url:"http://www.hackerank.com", score:"85/100", number:30, colour:"red"}],
+            CompanyTest:[{name:"Advance Java", url:"http://www.google.com", number:80}, {name:"Basic SQL", url:"http://www.yahoo.com", number:20}]
             }
         ];
         items.forEach(data => {
@@ -254,12 +277,12 @@ export default {
                     this.$router.push('/jobs/1');
         },
         getScoreColour(value){
-          return value > 90 ? "green"
-          :value > 80 ? "light-green accent-2"
-          :value > 70 ? "lime accent-3"
-          :value > 50 ? "yellow accent-2"
-          :value > 30 ? "orange accent-2"
-          : value
+          return value >= 90 ? "green"
+          :value >= 80 ? "light-green accent-2"
+          :value >= 70 ? "lime accent-3"
+          :value >= 50 ? "yellow accent-2"
+          :value >= 30 ? "orange accent-2"
+          : "red"
         }
 
     }
