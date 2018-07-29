@@ -1,6 +1,8 @@
 <template>
   <v-container>
-      <v-card width="800">
+    <div class="pa-3 display-1">Talent Details</div>
+    <br/>
+
         <v-card-media
           src="https://cdn-images-1.medium.com/max/1600/1*8r6hvv5E-FOOdKOih4G7Hg.jpeg"
           height="200px"
@@ -51,9 +53,9 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn flat color="orange">Send Invitation Email</v-btn>
+          <v-spacer/>
+          <v-btn>Send Invitation Email</v-btn>
         </v-card-actions>
-      </v-card>
   </v-container>
 </template>
 <script>
