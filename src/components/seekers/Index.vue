@@ -116,7 +116,7 @@
       },
 
       returnSeekerInfo(item){
-                    this.$router.push('/seekers/' + item)
+                    this.$router.push('/talent/' + item)
       },
 
       arrayToString(arr){
