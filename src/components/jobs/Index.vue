@@ -44,7 +44,7 @@
                   Edit Job Posting
                   <v-btn icon slot="activator" class="mr-3"><v-icon>edit</v-icon></v-btn>
                 </v-tooltip>
-                <job-details @showDialog="toggleQuickEditDialog"></job-details>
+                <details-dialog @showDialog="toggleQuickEditDialog"></details-dialog>
               </v-dialog>
               <v-tooltip top>
                   Share Job Posting
@@ -68,13 +68,13 @@
 
 
 <script>
-import JobDetails from "./DialogJobDetails"
+import DetailsDialog from "./DialogJobDetails"
 import NewJob from './DialogNewJob'
 import firebase from 'firebase'
 import JobsData from './JobsData'
 
   export default {
-    components: {JobDetails, NewJob},
+    components: {DetailsDialog, NewJob},
     data(){
       return {
         show: false,
