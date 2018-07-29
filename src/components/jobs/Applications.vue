@@ -31,8 +31,6 @@
         </v-layout>
       </v-container>
   <v-container>
-    <div class="pa-3 display-1">Applicants for Job Position: {{job.headline}}</div>
-    <br/>
     <v-data-table
       :headers="headers"
       :items="applicants"
