@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="pa-3"><div class="display-1">Job Posting</div></div>
+    <div class="pa-3 display-1">Job Posting</div>
     <br/>
     <v-layout>
       <v-dialog class="pa-2" v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">
@@ -35,7 +35,7 @@
             <v-card-actions>
               <v-btn @click="$router.push({name: 'JobDetailsPage'})">Job Page</v-btn>
               <!--<v-btn @click="$router.push({name: 'Applications', params: { jobId: job.code }})">-->
-              <v-btn @click="$router.push({path: '/jobs/1'})">
+              <v-btn @click="$router.push({path: `/jobs/${job.code}`})">
                 <v-badge><span slot="badge">{{job.newApplicants}}</span>View Applications</v-badge>
               </v-btn>
               <v-spacer></v-spacer>
@@ -111,7 +111,7 @@ import JobsData from './JobsData'
         let jobsRef = db.collection('jobs')
         jobsRef.orderBy('post_date', 'desc').get().then(snapshot => {
             snapshot.forEach(doc => {
-              this.cardItems.push(doc.data());
+              this.jobItems.push(doc.data());
           });
         }).catch(err => {
           console.log('Error getting documents', err);
