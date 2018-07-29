@@ -15,7 +15,6 @@
           <v-list-tile
             v-for="item in items"
             :key="item.title"
-            @click=""
           >
 
             <v-list-tile-content>
@@ -33,7 +32,6 @@
           <v-list-tile
             v-for="item in items2"
             :key="item.title"
-            @click=""
           >
 
 
@@ -41,9 +39,7 @@
               <v-list-tile-title v-html="item.title"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-        </v-list>
       </v-card>
-    </v-flex>
   </v-layout>
 </template>
 

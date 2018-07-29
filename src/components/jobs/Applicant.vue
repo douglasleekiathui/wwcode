@@ -1,5 +1,7 @@
 <template>
-<v-container>
+  <v-container>
+    <div class="pa-3 display-1">Applicant Details</div>
+    <br/>
     <v-layout align-center justify-center>
     <v-card width="">
         <v-card-text>
@@ -224,7 +226,7 @@ export default {
     }
     },
     mounted(){
-        console.log(this.$route.params.userId);
+        console.log(this.$route.params.applicant);
         var items =[
             {id:1,
             Projects:[{name:"Logic University Stationery Stock Inventory System", url:"http://www.LUSSIS.com",writeup:"A stationery inventory system for logic university using C# as backend and MongoDB as database. The inventory system shorten the average processing time from 4 days to 1 days. An accountability assessment also showed a 300% increase in the accountability of inventory under the new system as compared to the old manual system. The project was awarded with ISS-gold medal award."},{name:"Codeblue", url:"http://www.google.com",writeup:"A dashboard framework system that helps SME of Singapore to build dashboard application to link to their machine and transform data into useful information for process improvement. An average of 15% increment in productivity was reported by 26 Singapore SMEs. The system was developed on the MEAN stack to minimise cost of operation for the SMEs."},{name:"BlueMart Logistic System", url:"http://www.bluemart.com",writeup:"A logistic management for Blue Mart Singapore Pte Ltd. Improve the traceability of products using RFID tagging and other IOT solutions. The system allowed damaged perishable to be detected and result in a decrease of goods due to spoilage by 47%. This project was awarded with Blue Dot Design 2017"}],
@@ -242,7 +244,7 @@ export default {
             }
         ];
         items.forEach(data => {
-            if(data.id == this.$route.params.userId){
+            if(data.id == this.$route.params.applicant){
                 this.item = data;
             }           
         });

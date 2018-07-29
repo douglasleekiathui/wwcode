@@ -2,13 +2,13 @@
 <v-container>
     <v-layout column align-center justify-center>
     <v-card width="400">
-        <v-toolbar color="primary" class="headline white--text">Login</v-toolbar>
+        <v-toolbar color="primary" class="headline white--text">Company Login</v-toolbar>
         <v-card-text>
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field
                 v-model="name"
                 :rules="nameRules"
-                label="Name"
+                label="Company Username"
                 required
                 ></v-text-field>
                 <v-text-field

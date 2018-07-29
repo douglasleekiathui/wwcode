@@ -40,14 +40,14 @@
           v-for="c in i.children"
           :key="c"
           :to="c.path">
+          <v-list-tile-action>
+            <icon>{{c.icon}}</icon>
+          </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>
               {{ c.title }}
             </v-list-tile-title>
           </v-list-tile-content>
-          <v-list-tile-action>
-            <icon>{{c.icon}}</icon>
-          </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
         </span>
