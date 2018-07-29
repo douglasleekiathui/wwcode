@@ -1,8 +1,38 @@
 <template>
   <div>
+      <v-container
+        fluid
+        grid-list-lg
+      >
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-card dark class="white--text">
+              <v-card-title primary-title>
+                <div>
+                  <h3 class="headline mb-0"><i :class="job.icon"></i> {{job.headline}}</h3>
+                  <div class="grey--text">{{job.subtitle}}</div>
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-dialog v-model="quickEditDialog" persistent max-width="500px">
+                  <v-tooltip top slot="activator">
+                    Edit Job Posting
+                    <v-btn icon slot="activator" class="mr-3"><v-icon>edit</v-icon></v-btn>
+                  </v-tooltip>
+                  <details-dialog @showDialog="toggleQuickEditDialog"></details-dialog>
+                </v-dialog>
+                <v-btn icon>
+                  <v-icon>share</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
     <v-data-table
       :headers="headers"
-      :items="ApplicationsData"
+      :items="applicants"
       hide-actions
       class="elevation-1"
     >
@@ -20,22 +50,25 @@
 <script>
   import ApplicationsData from './ApplicationsData.js'
   import Applicant from './Applicant'
+  import JobsData from './JobsData'
+  import DetailsDialog from './DialogJobDetails'
   export default {
     name: 'Applications',
-    components: {Applicant},
+    components: {Applicant, DetailsDialog},
     data () {
       return {
-        ApplicationsData,
-        dialog: false,
+        applicants: ApplicationsData,
+        quickEditDialog: false,
+        job: JobsData[0],
         headers: [
           {
             text: 'Description',
             align: 'left',
-            sortable: false,
-            value: 'Description'
+            sortable: true,
+            value: 'description'
           },
-          { text: 'Role', value: 'Role' },
-          { text: 'Status', value: 'Status' }
+          { text: 'Role', value: 'role' },
+          { text: 'Status', value: 'status' }
         ]
       }
     },
@@ -45,15 +78,15 @@
           : status === 'Reviewed' ? 'secondary'
             : status === 'Invited' ? 'success' : 'danger'
       },
-      toggleDialog() {
-        this.dialog =!this.dialog
+      toggleQuickEditDialog() {
+        this.quickEditDialog =!this.quickEditDialog
       }
     }
   }
 </script>
 
 <style scoped>
-  .card-body >>> table > tbody > tr > td {
+  tr {
     cursor: pointer;
   }
 </style>
