@@ -38,7 +38,8 @@
       class="elevation-1"
     >
       <template slot="items" slot-scope="props">
-        <tr style="cursor:pointer" @click="$router.push(`/jobs/${job.code}/applicant/${props.item.id}`)">
+        <!-- <tr style="cursor:pointer" @click="$router.push(`/jobs/${job.code}/applicant/${props.item.id}`)"> -->
+        <tr style="cursor:pointer" @click="$router.push(`/jobs/${job.code}/applicant/1`)">
           <td>{{ formatDate(props.item.applied) }}</td>
           <td>{{ props.item.description }}</td>
           <td><v-chip :color="getChipColor(props.item.status)" text-color="white">{{ props.item.status }}</v-chip></td>
