@@ -111,7 +111,7 @@ import JobsData from './JobsData'
         let jobsRef = db.collection('jobs')
         jobsRef.orderBy('post_date', 'desc').get().then(snapshot => {
             snapshot.forEach(doc => {
-              this.cardItems.push(doc.data());
+              this.jobItems.push(doc.data());
           });
         }).catch(err => {
           console.log('Error getting documents', err);
