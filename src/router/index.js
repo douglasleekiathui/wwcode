@@ -6,9 +6,10 @@ import CompanyLayout from '@/layouts/CompanyLayout'
 
 import Login from '@/components/Login'
 import Settings from '@/components/Settings'
-import Construction from '@/components/Construction'
-import Construction2 from '@/components/Construction2'
-import Construction3 from '@/components/Construction3'
+// import Construction from '@/components/Construction'
+// import Construction2 from '@/components/Construction2'
+// import Construction3 from '@/components/Construction3'
+import UnderConstruction from '@/components/UnderConstruction'
 
 import Jobs from '@/components/jobs/Index'
 import Details from '@/components/jobs/DetailsPage'
@@ -32,23 +33,23 @@ export default new Router({
       }
     },
     {
-      path: '/construction',
+      path: '/assignment',
       components: {
-        default:Construction,
+        default:UnderConstruction,
         layout:CompanyLayout
       }
     },
     {
-      path: '/construction2',
+      path: '/assignment/create',
       components: {
-        default:Construction2,
+        default:UnderConstruction,
         layout:CompanyLayout
       }
     },
     {
-      path: '/construction3',
+      path: '/applicant',
       components: {
-        default:Construction3,
+        default:UnderConstruction,
         layout:CompanyLayout
       }
     },
@@ -75,7 +76,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/1',
+      path: '/jobs/:id',
       name: 'Applications',
       components: {
         default:Applications,
@@ -83,7 +84,7 @@ export default new Router({
       }
     },
     {
-      path: '/jobs/:jobId/:userId',
+      path: '/jobs/:id/:id',
       name: 'Applicant',
       components: {
         default:Applicant,
@@ -91,14 +92,14 @@ export default new Router({
       }
     },
     {
-      path: '/seekers',
+      path: '/talent',
       components: {
         default:Seekers,
         layout:CompanyLayout
       }
     },
     {
-      path: '/seekers/:id',
+      path: '/talent/:id',
       components: {
         default:SeekerDetails,
         layout:CompanyLayout

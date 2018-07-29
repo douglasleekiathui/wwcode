@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="pa-3"><div class="display-1">Job Posting</div></div>
+    <div class="pa-3 display-1">Job Posting</div>
     <br/>
     <v-layout>
       <v-dialog class="pa-2" v-model="newJobDialog" fullscreen hide-overlay transition="dialog-bottom-transition">

@@ -51,9 +51,7 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn flat color="orange">Issuance of Take-Home Assignment</v-btn>
-          <v-btn flat color="orange">Schedule Online Test</v-btn>
-          <v-btn flat color="orange">Schedule On-Site Interview</v-btn>
+          <v-btn flat color="orange">Send Invitation Email</v-btn>
         </v-card-actions>
       </v-card>
   </v-container>
@@ -66,4 +64,3 @@
     }
   }
 </script>
-
