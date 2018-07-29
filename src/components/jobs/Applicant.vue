@@ -95,7 +95,7 @@
             <v-spacer/>
     <!-- dialog for contact user portion -->
     <v-dialog class="pa-1" v-model="dialog_message" persistent max-width="500px">
-      <v-btn slot="activator" color="primary" dark>Send Message</v-btn>
+      <v-btn slot="activator">Send Message</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Send Message</span>
@@ -119,7 +119,7 @@
     <!-- End of dialog for contact applicant -->
         <!-- dialog for arrange interview portion -->
     <v-dialog class="pa-1" v-model="dialog_interview" persistent max-width="500px">
-      <v-btn slot="activator" color="primary" dark>Arrange interview</v-btn>
+      <v-btn slot="activator">Arrange interview</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Arrange interview</span>
@@ -169,7 +169,7 @@
     <!-- End of dialog for Arrange interview -->
     <!-- dialog for sending test portion -->
     <v-dialog class="pa-1" v-model="dialog_test" scrollable max-width="500px">
-      <v-btn slot="activator" color="primary" dark>Send Test(s)</v-btn>
+      <v-btn slot="activator">Send Test(s)</v-btn>
       <v-card>
         <v-card-title>
           <span class="headline">Select test(s) to send</span>
@@ -215,7 +215,7 @@
     </v-dialog>
     <!-- End of dialog for Arrange interview -->
     <v-dialog class="pa-1" v-model="placeholderForNothing">
-            <v-btn slot="activator" @click="returnApplicationList" color="primary">Return to List</v-btn>
+            <v-btn slot="activator" @click="returnApplicationList">Return to List</v-btn>
     </v-dialog>
         </v-card-actions>
     </v-card>
