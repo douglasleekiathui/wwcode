@@ -8,7 +8,6 @@
     label="Search Keywords"
     chips
     clearable
-    solo
     multiple
   >
     <template slot="selection" slot-scope="data">
@@ -52,7 +51,7 @@
     data () {
       return {
         chips: [],
-        items: ['Java', 'C#', 'Python', 'MySQL'],
+        items: ['Java', 'C#', 'Python', 'MySQL', 'MongoDB', 'NoSQL', 'PHP'],
         applicants:[
         {id:1, skills:['C#','MSSQL','MongoDB'], views:'Number of views : 12'},
         {id:2, skills:['Java','HTML','CSS'], views:'Number of views : 10'},
